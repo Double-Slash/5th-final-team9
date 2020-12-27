@@ -1,4 +1,4 @@
-package com.memoria.utils;
+package com.memoria.service;
 
 import android.app.Service;
 import android.content.Intent;

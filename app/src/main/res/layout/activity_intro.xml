@@ -4,20 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#FFCA6F"
     android:gravity="center"
-    tools:context=".activity.LockScreenActivity">
+    tools:context=".activity.IntroActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="더블슬래시 테스트"
-        android:gravity="center"/>
-
-    <TextView
-        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사용 시간"/>
+        android:textSize="40dp"
+        android:text="인트로"/>
 
 </LinearLayout>
