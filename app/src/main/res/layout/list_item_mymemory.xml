@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@drawable/shape_rectangle_list">
+
+    <TextView
+        android:id="@+id/memory_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:text="The ultimate measure of a person is not where they
+stand in moments of comfort and convenience, but
+where they stand in times of challenge and controve
+rsy."
+        android:textColor="@color/bold_text"
+        android:textSize="14dp" />
+
+</LinearLayout>

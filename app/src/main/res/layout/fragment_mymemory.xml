@@ -39,6 +39,8 @@
         android:id="@+id/memory_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="4dp"
+        android:divider="#FFFFFF"
         android:paddingTop="30dp"
         android:layout_below="@id/title_text"/>
 

@@ -86,7 +86,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     public ArrayList<MyWord> selectWordListByGroup(String groupName){
         ArrayList<MyWord> resultList = new ArrayList<>();
 
-        String sql = "select " + COL_ENGLISH_WORD + " , " + COL_KOREAN_WORD + " from " + TABLE_NAME + " where "+ COL_GROUP_NAME + " = " + groupName +  ";";
+        String sql = "select " + COL_ENGLISH_WORD + " , " + COL_KOREAN_WORD + " from " + TABLE_NAME + " where "+ COL_GROUP_NAME + " = '" + groupName +  "';";
         Cursor results = db.rawQuery(sql, null);
 
         if(results.moveToFirst()){
@@ -103,15 +103,17 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     }
 
     //그룹리스트 조회
-    public ArrayList<String> selectWordGroupList(){
-        ArrayList<String> resultList = new ArrayList<>();
+    public ArrayList<MyWord> selectWordGroupList(){
+        ArrayList<MyWord> resultList = new ArrayList<>();
 
         String sql = "select distinct " + COL_GROUP_NAME + " from " + TABLE_NAME + ";";
         Cursor results = db.rawQuery(sql, null);
 
         if(results.moveToFirst()){
             do{
-                resultList.add(results.getString(0));
+                MyWord myWord = new MyWord();
+                myWord.setGroupName(results.getString(0));
+                resultList.add(myWord);
             }while(results.moveToNext());
         }
         results.close();

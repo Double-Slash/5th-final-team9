@@ -43,7 +43,7 @@ public class MyMemoryDBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_ENGLISH_MEMORY, myMemory.getEnglishMemory());
 //        contentValues.put(COL_KOREAN_MEMORY, myWord.getKoreanWord());
-        contentValues.put(COL_ENGLISH_MEMORY, myMemory.getDate());
+        contentValues.put(COL_DATE, myMemory.getDate());
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -52,7 +52,7 @@ public class MyMemoryDBHelper extends SQLiteOpenHelper {
     }
 
     //모든 문장 조회
-    public ArrayList<MyMemory> selectAllMemoryList(String groupName){
+    public ArrayList<MyMemory> selectAllMemoryList(){
         ArrayList<MyMemory> resultList = new ArrayList<>();
 
         String sql = "select " + COL_ENGLISH_MEMORY + " from " + TABLE_NAME + ";";
@@ -87,7 +87,7 @@ public class MyMemoryDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS MyWordTable");
+        db.execSQL("DROP TABLE IF EXISTS MyMemoryTable");
         onCreate(db);
     }
 

@@ -9,7 +9,7 @@
         android:id="@+id/back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_left"
         android:layout_margin="5dp"
         android:background="@android:color/transparent"
         />
@@ -19,29 +19,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="My word"
+        android:text="그룹추가"
         android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="@color/bold_text"/>
 
     <TextView
-        android:id="@+id/choice_btn"
+        android:id="@+id/finish_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:textColor="@color/side_text"
         android:textSize="14dp"
         android:layout_margin="5dp"
-        android:text="선택" />
+        android:text="완료" />
 
-    <GridView
-        android:id="@+id/word_grid_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        android:paddingTop="30dp"
-        android:layout_below="@id/title_text"/>
 
 </RelativeLayout>

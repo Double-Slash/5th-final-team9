@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.IntroActivity"/>
+        <activity android:name=".activity.WordListActivity"></activity>
+        <activity android:name=".activity.WordGroupAddActivity" />
+        <activity android:name=".activity.IntroActivity" />
         <activity android:name=".activity.LockScreenActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
