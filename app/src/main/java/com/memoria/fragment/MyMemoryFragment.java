@@ -1,14 +1,18 @@
 package com.memoria.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
 import com.memoria.R;
+import com.memoria.activity.MemoryAddActivity;
 import com.memoria.adapter.MemoryListAdapter;
 import com.memoria.dbhelper.MyMemoryDBHelper;
 import com.memoria.modeldata.MyMemory;
@@ -18,6 +22,13 @@ import java.util.ArrayList;
 public class MyMemoryFragment extends Fragment {
 
     View view;
+    ImageButton addBtn;
+
+    public static final int REQUEST_CODE = 100;
+
+    ArrayList<MyMemory> myMemoryArrayList;
+    ListView listView;
+    MemoryListAdapter memoryListAdapter;
 
     //DB관련
     private MyMemoryDBHelper myMemoryDBHelper;
@@ -61,15 +72,38 @@ public class MyMemoryFragment extends Fragment {
 //        myMemoryDBHelper.insertMemory(myMemory3);
 //        myMemoryDBHelper.insertMemory(myMemory4);
 
-        ArrayList<MyMemory> myMemoryArrayList = myMemoryDBHelper.selectAllMemoryList();
+        addBtn = view.findViewById(R.id.add_btn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MemoryAddActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
 
-        ListView listView = view.findViewById(R.id.memory_list);
-        MemoryListAdapter memoryListAdapter = new MemoryListAdapter(getContext(), 0, myMemoryArrayList);
+        myMemoryArrayList = myMemoryDBHelper.selectAllMemoryList();
+
+        listView = view.findViewById(R.id.memory_list);
+        memoryListAdapter = new MemoryListAdapter(getContext(), 0, myMemoryArrayList);
 
         listView.setAdapter(memoryListAdapter);
 
-
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode != Activity.RESULT_OK) {
+                return;
+            }
+            myMemoryArrayList = myMemoryDBHelper.selectAllMemoryList();
+            memoryListAdapter = new MemoryListAdapter(getActivity(), 0, myMemoryArrayList);
+            listView.setAdapter(memoryListAdapter);
+
+        }
     }
 
 }

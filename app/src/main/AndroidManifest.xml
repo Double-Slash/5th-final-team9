@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.WordAddActivity"></activity>
+        <activity android:name=".activity.MemoryAddActivity"></activity>
+        <activity android:name=".activity.WordAddActivity" />
         <activity android:name=".activity.WordListActivity" />
         <activity android:name=".activity.WordGroupAddActivity" />
         <activity android:name=".activity.IntroActivity" />
