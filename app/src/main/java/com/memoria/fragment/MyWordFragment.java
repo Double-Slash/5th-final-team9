@@ -1,5 +1,6 @@
 package com.memoria.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
 import com.memoria.R;
+import com.memoria.activity.WordGroupAddActivity;
 import com.memoria.activity.WordListActivity;
 import com.memoria.adapter.GridAdapter;
 import com.memoria.dbhelper.MyWordDBHelper;
@@ -21,11 +24,17 @@ import java.util.ArrayList;
 public class MyWordFragment extends Fragment {
 
     View view;
+    ImageButton addBtn;
+
+    public static final int REQUEST_CODE = 100;
 
     //DB관련
     private MyWordDBHelper myWordDBHelper;
 
     ArrayList<MyWord> myWords = new ArrayList<>();
+    GridAdapter adapter;
+    GridView gridView;
+
     public MyWordFragment() {
         // Required empty public constructor
     }
@@ -75,8 +84,17 @@ public class MyWordFragment extends Fragment {
         myWordDBHelper = new MyWordDBHelper(getContext());
         myWords = myWordDBHelper.selectWordGroupList();
 
-        GridView gridView = view.findViewById(R.id.word_grid_list);
-        GridAdapter adapter = new GridAdapter(getActivity(), 0, myWords);
+        gridView = view.findViewById(R.id.word_grid_list);
+        adapter = new GridAdapter(getActivity(), 0, myWords);
+
+        addBtn = view.findViewById(R.id.add_btn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WordGroupAddActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
 
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,7 +106,25 @@ public class MyWordFragment extends Fragment {
             }
         });
 
+
+
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode != Activity.RESULT_OK) {
+                return;
+            }
+//            String returnGroupName = data.getExtras().getString("groupAddName");
+            myWords = myWordDBHelper.selectWordGroupList();
+            adapter = new GridAdapter(getActivity(), 0, myWords);
+            gridView.setAdapter(adapter);
+
+        }
     }
 
 }

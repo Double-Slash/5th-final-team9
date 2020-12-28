@@ -34,5 +34,13 @@
         android:layout_margin="5dp"
         android:text="완료" />
 
+    <EditText
+        android:id="@+id/group_add_edit"
+        android:layout_below="@id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:hint="      그룹 이름"/>
+
 
 </RelativeLayout>

@@ -56,9 +56,9 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     }
 
     //그룹추가
-    public boolean insertWordGroup(MyWord myWord){
+    public boolean insertWordGroup(String groupName){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_GROUP_NAME, myWord.getGroupName());
+        contentValues.put(COL_GROUP_NAME, groupName);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -70,7 +70,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     public int selectWordCountByDate(String date){
         int result = 0;
 
-        String sql = "select count(*) " + " from " + TABLE_NAME + " where " + COL_DATE + " = '"+ date + "';";
+        String sql = "select count(*) " + " from " + TABLE_NAME + " where " + COL_ENGLISH_WORD + " is not null and " + COL_DATE + " = '"+ date + "';";
         Cursor results = db.rawQuery(sql, null);
 
         if(results.moveToFirst()){
@@ -86,7 +86,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     public ArrayList<MyWord> selectWordListByGroup(String groupName){
         ArrayList<MyWord> resultList = new ArrayList<>();
 
-        String sql = "select " + COL_ENGLISH_WORD + " , " + COL_KOREAN_WORD + " from " + TABLE_NAME + " where "+ COL_GROUP_NAME + " = '" + groupName +  "';";
+        String sql = "select " + COL_ENGLISH_WORD + " , " + COL_KOREAN_WORD + " from " + TABLE_NAME + " where "+ COL_ENGLISH_WORD + " is not null and " + COL_GROUP_NAME + " = '" + groupName +  "';";
         Cursor results = db.rawQuery(sql, null);
 
         if(results.moveToFirst()){
