@@ -106,8 +106,6 @@ public class MyWordFragment extends Fragment {
             }
         });
 
-
-
         return view;
     }
 

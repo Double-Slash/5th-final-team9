@@ -8,7 +8,7 @@ import com.memoria.fragment.CalendarFragment;
 import com.memoria.fragment.MyMemoryFragment;
 import com.memoria.fragment.MyWordFragment;
 import com.memoria.fragment.OptionFragment;
-import com.memoria.fragment.TestFragment;
+import com.memoria.fragment.MyTestFragment;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
     public FragmentAdapter(FragmentManager fm) { super(fm); }
@@ -20,7 +20,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
             case 1:
                 return MyMemoryFragment.newInstance();
             case 2:
-                return TestFragment.newInstance();
+                return MyTestFragment.newInstance();
             case 3:
                 return CalendarFragment.newInstance();
             case 4:
