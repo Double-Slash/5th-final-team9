@@ -11,19 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.MemoryAddActivity"></activity>
+        <activity android:name=".activity.PermissionActivity"></activity>
+        <activity android:name=".activity.MemoryAddActivity" />
         <activity android:name=".activity.WordAddActivity" />
         <activity android:name=".activity.WordListActivity" />
         <activity android:name=".activity.WordGroupAddActivity" />
-        <activity android:name=".activity.IntroActivity" />
-        <activity android:name=".activity.LockScreenActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LockScreenActivity" />
+        <activity android:name=".activity.MainActivity"></activity>
 
         <service android:name=".service.ScreenService" />
 

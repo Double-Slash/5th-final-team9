@@ -52,6 +52,8 @@ public class CalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
+
+        //리사이클러뷰 샘플
         goalAchieves = new ArrayList<>();
         goalAchieves.add(new GoalAchieve("My Word", "20개"));
         goalAchieves.add(new GoalAchieve("My Memory", "2개"));
@@ -62,7 +64,9 @@ public class CalendarFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)) ;
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(goalAchieves) ;
         recyclerView.setAdapter(adapter);
-//        recyclerView.addItemDecoration(new ItemDecoration(25));
+
+
+        //캘릭더뷰
 
         materialCalendarView = view.findViewById(R.id.calendarView);
 //        materialCalendarView.addDecorator();

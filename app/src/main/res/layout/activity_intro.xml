@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFCA6F"
-    android:gravity="center"
+    android:background="#FFFFFF"
     tools:context=".activity.IntroActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="30dp"
+        android:layout_centerInParent="true"
+        >
+    <ImageView
+        android:layout_width="123dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="인트로"/>
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:text="메모리아 캐치프레이즈"/>
+    </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Copyright(C) 2020. All rights reserved by Double Slash 9team"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:textColor="#C0C0C0"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
