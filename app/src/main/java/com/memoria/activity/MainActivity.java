@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -84,33 +83,23 @@ public class MainActivity extends AppCompatActivity {
         //아이콘설정
         View view1 = getLayoutInflater().inflate(R.layout.custom_tab, null);
         ImageView img1 = view1.findViewById(R.id.img_tab);
-        TextView txt1 = view1.findViewById(R.id.txt_tab_name);
-        img1.setImageResource(R.drawable.sample_tab);
-        txt1.setText("1");
+        img1.setImageResource(R.drawable.myword);
 
         View view2 = getLayoutInflater().inflate(R.layout.custom_tab, null);
         ImageView img2 = view2.findViewById(R.id.img_tab);
-        TextView txt2 = view2.findViewById(R.id.txt_tab_name);
-        img2.setImageResource(R.drawable.sample_tab);
-        txt2.setText("2");
+        img2.setImageResource(R.drawable.mymemory);
 
         View view3 = getLayoutInflater().inflate(R.layout.custom_tab, null);
         ImageView img3 = view3.findViewById(R.id.img_tab);
-        TextView txt3 = view3.findViewById(R.id.txt_tab_name);
-        img3.setImageResource(R.drawable.sample_tab);
-        txt3.setText("3");
+        img3.setImageResource(R.drawable.test);
 
         View view4 = getLayoutInflater().inflate(R.layout.custom_tab, null);
         ImageView img4 = view4.findViewById(R.id.img_tab);
-        TextView txt4 = view4.findViewById(R.id.txt_tab_name);
-        img4.setImageResource(R.drawable.sample_tab);
-        txt4.setText("4");
+        img4.setImageResource(R.drawable.calendar);
 
         View view5 = getLayoutInflater().inflate(R.layout.custom_tab, null);
         ImageView img5 = view5.findViewById(R.id.img_tab);
-        TextView txt5 = view5.findViewById(R.id.txt_tab_name);
-        img5.setImageResource(R.drawable.sample_tab);
-        txt5.setText("5");
+        img5.setImageResource(R.drawable.option);
 
 
         tabContent.getTabAt(0).setCustomView(view1);

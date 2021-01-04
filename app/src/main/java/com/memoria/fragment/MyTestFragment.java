@@ -1,6 +1,5 @@
 package com.memoria.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +57,7 @@ public class MyTestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 comment.setVisibility(View.VISIBLE);
+                start.setVisibility(View.GONE);
             }
         });
 

@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="hint_text">#C0C0C0</color>
-    <color name="side_text">#707070</color>
-    <color name="bold_text">#656565</color>
+    <color name="side_text">#000000</color>
+    <color name="bold_text">#000000</color>
+    <color name="medium_text">#000000</color>
+    <color name="main_mint">#7AEAC3</color>
 </resources>

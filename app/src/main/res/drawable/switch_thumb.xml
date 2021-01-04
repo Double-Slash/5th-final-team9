@@ -8,8 +8,8 @@
         <shape android:shape="oval">
 
             <size
-                android:width="29dp"
-                android:height="29dp" />
+                android:width="25dp"
+                android:height="25dp" />
 
             <solid
                 android:color="#53e3b0" />

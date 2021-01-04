@@ -31,15 +31,15 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="잠금화면 설정"
-            android:textColor="#000000"
-            android:textSize="18dp"
+            android:textColor="@color/bold_text"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="0.5dp"
             android:layout_margin="5dp"
-            android:background="#e3e3e3" />
+            android:background="#E4E4E4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,8 +54,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="잠금화면 퀴즈"
-                android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textColor="@color/medium_text"
+                android:textSize="14dp"/>
 
             <Switch
                 android:id="@+id/switchOfLock"
@@ -80,15 +80,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="표시단어 설정"
-                android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textColor="@color/medium_text"
+                android:textSize="14dp" />
 
             <ImageButton
                 android:id="@+id/lockButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_right" />
+                android:scaleType="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right" />
 
         </LinearLayout>
 
@@ -107,15 +108,15 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="푸시알림 설정"
-            android:textColor="#000000"
-            android:textSize="18dp"
+            android:textColor="@color/bold_text"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="0.5dp"
             android:layout_margin="5dp"
-            android:background="#e3e3e3" />
+            android:background="#E4E4E4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,8 +131,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="푸시알림"
-                android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textColor="@color/medium_text"
+                android:textSize="14dp" />
 
             <Switch
                 android:id="@+id/switchOfPush"
@@ -156,15 +157,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="주기 설정"
-                android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textColor="@color/medium_text"
+                android:textSize="14dp" />
 
             <ImageButton
                 android:id="@+id/pushButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_right" />
+                android:scaleType="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right" />
         </LinearLayout>
 
     </LinearLayout>
@@ -182,15 +184,15 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="데이터 설정"
-            android:textColor="#000000"
-            android:textSize="18dp"
+            android:textColor="@color/bold_text"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="0.5dp"
             android:layout_margin="5dp"
-            android:background="#e3e3e3" />
+            android:background="#E4E4E4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -205,15 +207,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="데이터 백업"
-                android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textColor="@color/medium_text"
+                android:textSize="14dp"/>
 
             <ImageButton
                 android:id="@+id/backupButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_right" />
+                android:scaleType="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right" />
         </LinearLayout>
 
         <LinearLayout
@@ -229,15 +232,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="데이터 복원"
-                android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textColor="@color/medium_text"
+                android:textSize="14dp" />
 
             <ImageButton
                 android:id="@+id/recoverButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_right" />
+                android:scaleType="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right" />
         </LinearLayout>
 
     </LinearLayout>

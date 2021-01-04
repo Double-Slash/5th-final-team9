@@ -14,7 +14,7 @@
 stand in moments of comfort and convenience, but
 where they stand in times of challenge and controve
 rsy."
-        android:textColor="@color/bold_text"
+        android:textColor="#000000"
         android:textSize="14dp" />
 
 </LinearLayout>
