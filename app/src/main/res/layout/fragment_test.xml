@@ -34,6 +34,7 @@
         android:id="@+id/test_grid_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:layout_above="@id/btn_test_start"
         android:layout_below="@id/title_text"
         android:choiceMode="multipleChoice"

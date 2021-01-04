@@ -42,6 +42,7 @@
         android:dividerHeight="-1dp"
         android:divider="#FFFFFF"
         android:paddingTop="30dp"
+        android:scrollbars="none"
         android:layout_below="@id/title_text"/>
 
 </RelativeLayout>

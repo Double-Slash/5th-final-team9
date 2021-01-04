@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingTop="40dp"
@@ -12,9 +13,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="12월"
+        android:text="목표 달성"
+        android:textColor="@color/bold_text"
         android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/bold_text"/>
+        android:textStyle="bold" />
+
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_text"
+        app:mcv_selectionColor="@color/bold_text"
+        app:mcv_showOtherDates="defaults" />
+
+
+    <TextView
+        android:id="@+id/todaygoal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:text="일별 달성량"
+        android:textColor="@color/bold_text"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/todaygoal_text"
+        android:layout_toEndOf="@id/todaygoal_text"
+        android:foregroundGravity="center"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/goal" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todaygoad_list"
+        android:layout_below="@id/todaygoal_text"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="horizontal" />
+
 
 </RelativeLayout>

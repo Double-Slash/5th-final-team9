@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:padding="30dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/grid_shadow"
+    android:orientation="vertical"
+    tools:ignore="RtlSymmetry">
+
+    <TextView
+        android:id="@+id/goal_title_text"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="My word"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/bold_text" />
+
+    <TextView
+        android:id="@+id/goal_count_text"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="20개"
+        android:textStyle="bold"
+        android:textColor="@color/bold_text"
+        android:textSize="40dp" />
+
+</LinearLayout>
