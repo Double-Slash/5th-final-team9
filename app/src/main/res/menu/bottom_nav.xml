@@ -30,7 +30,7 @@
 
     <item
         android:id="@+id/navigation_5"
-        android:icon="@drawable/calendar"
+        android:icon="@drawable/option"
         android:enabled="true"
         android:checked="true"
         android:title="" />

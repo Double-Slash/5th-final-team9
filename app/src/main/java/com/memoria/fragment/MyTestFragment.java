@@ -60,7 +60,8 @@ public class MyTestFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment2).commit();/*프래그먼트 매니저가 프래그먼트를 담당한다!*/
+                ((MainActivity)getActivity()).replaceFragment(fragment2);
+
             }
         });
 

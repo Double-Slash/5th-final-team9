@@ -22,6 +22,14 @@ import com.memoria.fragment.OptionFragment;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mBottomNV;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private MyWordFragment fragment1 = new MyWordFragment();
+    private MyMemoryFragment fragment2 = new MyMemoryFragment();
+    private MyTestFragment fragment3 = new MyTestFragment();
+    private CalendarFragment fragment4 = new CalendarFragment();
+    private OptionFragment fragment5 = new OptionFragment();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,54 +37,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mBottomNV = findViewById(R.id.nav_view);
-        mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { //NavigationItemSelecte
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment1).commitAllowingStateLoss();
+        //바텀 네비게이션뷰 안의 아이템들 설정
+        mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                BottomNavigate(menuItem.getItemId());
-
-
-                return true;
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                switch (item.getItemId()) {
+                    case R.id.navigation_1: {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment1).commitAllowingStateLoss();
+                        return true;
+                    }
+                    case R.id.navigation_2: {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment2).commitAllowingStateLoss();
+                        return true;
+                    }
+                    case R.id.navigation_3: {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment3).commitAllowingStateLoss();
+                        return true;
+                    }
+                    case R.id.navigation_4: {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment4).commitAllowingStateLoss();
+                        return true;
+                    }
+                    case R.id.navigation_5: {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment5).commitAllowingStateLoss();
+                        return true;
+                    }
+                    default: return false;
+                }
             }
         });
-        mBottomNV.setSelectedItemId(R.id.navigation_1);
-    }
-    private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
-        String tag = String.valueOf(id);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        Fragment currentFragment = fragmentManager.getPrimaryNavigationFragment();
-        if (currentFragment != null) {
-            fragmentTransaction.hide(currentFragment);
-        }
-
-        Fragment fragment = fragmentManager.findFragmentByTag(tag);
-        if (fragment == null) {
-            if (id == R.id.navigation_1) {
-                fragment = new MyWordFragment();
-
-            } else if (id == R.id.navigation_2){
-
-                fragment = new MyMemoryFragment();
-            }else if(id == R.id.navigation_3){
-                fragment = new MyTestFragment();
-            }
-            else if(id == R.id.navigation_4){
-                fragment = new CalendarFragment();
-            }
-            else{
-                fragment= new OptionFragment();
-            }
-
-            fragmentTransaction.add(R.id.content_layout, fragment, tag);
-        } else {
-            fragmentTransaction.show(fragment);
-        }
-
-        fragmentTransaction.setPrimaryNavigationFragment(fragment);
-        fragmentTransaction.setReorderingAllowed(true);
-        fragmentTransaction.commitNow();
-
     }
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -84,5 +75,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.content_layout, fragment).commit();
         // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
- }
+}
 

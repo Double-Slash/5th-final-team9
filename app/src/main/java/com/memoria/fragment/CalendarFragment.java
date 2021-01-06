@@ -27,6 +27,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 
 public class CalendarFragment extends Fragment {
@@ -46,7 +47,7 @@ public class CalendarFragment extends Fragment {
 
 
         //리사이클러뷰 샘플
-        goalAchieves = new ArrayList<>();
+     /*   goalAchieves = new ArrayList<>();
         goalAchieves.add(new GoalAchieve("My Word", "20개"));
         goalAchieves.add(new GoalAchieve("My Memory", "2개"));
         goalAchieves.add(new GoalAchieve("Test", "100%"));
@@ -55,12 +56,12 @@ public class CalendarFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.todaygoad_list) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)) ;
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(goalAchieves) ;
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
 
 
         //캘릭더뷰
 
-        materialCalendarView = view.findViewById(R.id.calendarView);
+   /*     materialCalendarView = view.findViewById(R.id.calendarView);
 //        materialCalendarView.addDecorator();
 
         String[] result = {"2020,12,18","2020,12,19","2020,12,28","2020,12,30"};
@@ -87,7 +88,7 @@ public class CalendarFragment extends Fragment {
                 Toast.makeText(getContext(), shot_Day , Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         return view;
     }
 
@@ -149,12 +150,11 @@ public class CalendarFragment extends Fragment {
             return dates;
         }
 
-        @Override
+/*        @Override
         protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
             super.onPostExecute(calendarDays);
-            materialCalendarView.addDecorators(new EventDecorator(Color.GREEN, calendarDays, getActivity()),
-                    new EventDecorator(Color.rgb(233,127,127), calendarDays, getActivity()));
-        }
+            materialCalendarView.addDecorators(new EventDecorator(Color.GREEN, calendarDays, Objects.requireNonNull(getActivity())));
+        }*/
 
     }
 }
