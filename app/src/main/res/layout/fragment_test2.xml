@@ -7,9 +7,8 @@
     android:paddingTop="40dp"
     android:paddingHorizontal="20dp">
 
-
     <TextView
-        android:id="@+id/title_text"
+        android:id="@+id/title_text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -20,15 +19,15 @@
 
     <GridView
         android:id="@+id/test_grid_list2"
-        android:layout_width="wrap_content"
-        android:layout_height="527dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
         android:layout_above="@id/btn_test_start2"
-        android:layout_below="@id/title_text"
+        android:layout_below="@id/title_text2"
         android:layout_marginTop="45dp"
         android:choiceMode="multipleChoice"
         android:numColumns="2"
-        android:paddingTop="30dp"
-        android:scrollbars="none" />
+        android:paddingTop="30dp"/>
 
     <Button
         android:id="@+id/btn_test_start2"
@@ -49,10 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        android:textSize="16dp"
+        android:layout_marginTop="35dp"
+        android:text="테스트할 그룹을 터치해주세요"
         android:textColor="#090707"
-        android:text="테스트할 그룹을 터치해주세요" />
+        android:textSize="16dp" />
 
 
 </RelativeLayout>

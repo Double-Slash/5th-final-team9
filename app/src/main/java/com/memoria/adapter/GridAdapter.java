@@ -11,14 +11,18 @@ import com.memoria.R;
 import com.memoria.modeldata.MyWord;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GridAdapter extends ArrayAdapter<MyWord> {
 
     private ArrayList<MyWord> items;
+    public List<Integer> selectedPositions;
 
     public GridAdapter(Context context, int textViewResourceId, ArrayList<MyWord> objects) {
         super(context, textViewResourceId, objects);
         this.items = objects;
+        selectedPositions = new ArrayList<>();
+
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
