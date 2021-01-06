@@ -6,34 +6,34 @@
         android:icon="@drawable/myword"
         android:enabled="true"
         android:checked="true"
-        android:title="myword" />
+        android:title="" />
 
     <item
         android:id="@+id/navigation_2"
         android:icon="@drawable/mymemory"
         android:enabled="true"
         android:checked="true"
-        android:title="memory" />
+        android:title="" />
 
     <item
         android:id="@+id/navigation_3"
         android:icon="@drawable/test"
         android:enabled="true"
         android:checked="true"
-        android:title="test" />
+        android:title="" />
     <item
         android:id="@+id/navigation_4"
         android:icon="@drawable/calendar"
         android:enabled="true"
         android:checked="true"
-        android:title="calendar" />
+        android:title="" />
 
     <item
         android:id="@+id/navigation_5"
-        android:icon="@drawable/option"
+        android:icon="@drawable/calendar"
         android:enabled="true"
         android:checked="true"
-        android:title="option" />
+        android:title="" />
 
 
 </menu>

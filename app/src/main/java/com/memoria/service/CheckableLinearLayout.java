@@ -13,7 +13,6 @@ class CheckableLinearLayout extends LinearLayout implements Checkable {
     public CheckableLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mIsChecked = false ;
     }
 
     @Override

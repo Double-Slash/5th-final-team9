@@ -2,7 +2,6 @@ package com.memoria.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,20 +11,17 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.memoria.R;
-import com.memoria.activity.MainActivity;
 import com.memoria.adapter.GridAdapter;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.modeldata.MyWord;
 
 import java.util.ArrayList;
 
-public class MyTestFragment extends Fragment {
+public class MyTestFragment2 extends Fragment {
 
     View view;
     Button start;
     TextView comment;
-    MyTestFragment2 fragment2;
-    MainActivity activity;
     public static final int REQUEST_CODE = 100;
 
     private MyWordDBHelper myWordDBHelper;
@@ -37,32 +33,14 @@ public class MyTestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_test, container, false);
+        view = inflater.inflate(R.layout.fragment_test2, container, false);
 
         myWordDBHelper = new MyWordDBHelper(getContext());
         myWords = myWordDBHelper.selectWordGroupList();
 
-        gridView = view.findViewById(R.id.test_grid_list);
+        gridView = view.findViewById(R.id.test_grid_list2);
         adapter = new GridAdapter(getActivity(), 0, myWords);
         gridView.setAdapter(adapter);
-
-        gridView.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
-            }
-        });
-
-        activity=(MainActivity)getActivity();
-        fragment2=new MyTestFragment2();
-
-        start=view.findViewById(R.id.btn_test_start);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment2).commit();/*프래그먼트 매니저가 프래그먼트를 담당한다!*/
-            }
-        });
 
         return view;
     }

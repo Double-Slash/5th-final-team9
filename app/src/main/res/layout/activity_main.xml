@@ -28,6 +28,7 @@
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         android:layout_marginBottom="-2dp"
+        app:itemIconTint="#7AEAC3"
         app:menu="@menu/bottom_nav"
         />
 
