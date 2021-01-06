@@ -1,6 +1,7 @@
 package com.memoria.decorator;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -24,5 +25,11 @@ public class GridItemView extends FrameLayout {
 
     public void display(boolean isSelected) {
         textView.setBackgroundResource(isSelected ? R.drawable.grid_select: R.drawable.grid_shadow);
+        if(isSelected){
+            textView.setTextColor(Color.WHITE);
+        }
+        else{
+            textView.setTextColor(Color.BLACK);
+        }
     }
 }
