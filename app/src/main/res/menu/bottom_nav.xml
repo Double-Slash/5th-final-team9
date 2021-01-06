@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_1"
+        android:icon="@drawable/myword"
+        android:enabled="true"
+        android:checked="true"
+        android:title="myword" />
+
+    <item
+        android:id="@+id/navigation_2"
+        android:icon="@drawable/mymemory"
+        android:enabled="true"
+        android:checked="true"
+        android:title="memory" />
+
+    <item
+        android:id="@+id/navigation_3"
+        android:icon="@drawable/test"
+        android:enabled="true"
+        android:checked="true"
+        android:title="test" />
+    <item
+        android:id="@+id/navigation_4"
+        android:icon="@drawable/calendar"
+        android:enabled="true"
+        android:checked="true"
+        android:title="calendar" />
+
+    <item
+        android:id="@+id/navigation_5"
+        android:icon="@drawable/option"
+        android:enabled="true"
+        android:checked="true"
+        android:title="option" />
+
+
+</menu>

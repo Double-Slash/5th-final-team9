@@ -30,15 +30,6 @@ public class MyTestFragment extends Fragment {
     GridAdapter adapter;
     GridView gridView;
 
-    public MyTestFragment() {
-        // Required empty public constructor
-    }
-
-    public static MyTestFragment newInstance() {
-        MyTestFragment fragment = new MyTestFragment();
-        return fragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
