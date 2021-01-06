@@ -33,10 +33,19 @@ public class MyMemoryFragment extends Fragment {
     //DB관련
     private MyMemoryDBHelper myMemoryDBHelper;
 
+    public MyMemoryFragment() {
+        // Required empty public constructor
+    }
+
+    public static MyMemoryFragment newInstance() {
+        MyMemoryFragment fragment = new MyMemoryFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.fragment_mymemory, container, false);
+        view = inflater.inflate(R.layout.fragment_mymemory, container, false);
 
         myMemoryDBHelper = new MyMemoryDBHelper(getContext());
         MyMemory myMemory= new MyMemory();

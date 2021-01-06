@@ -38,11 +38,19 @@ public class CalendarFragment extends Fragment {
     MaterialCalendarView materialCalendarView;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
 
+    public CalendarFragment() {
+        // Required empty public constructor
+    }
+
+    public static CalendarFragment newInstance() {
+        CalendarFragment fragment = new CalendarFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.fragment_calendar, container, false);
+        view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
 
         //리사이클러뷰 샘플
