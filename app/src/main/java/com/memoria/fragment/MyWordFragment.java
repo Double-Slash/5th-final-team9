@@ -35,14 +35,6 @@ public class MyWordFragment extends Fragment {
     GridAdapter adapter;
     GridView gridView;
 
-    public MyWordFragment() {
-        // Required empty public constructor
-    }
-
-    public static MyWordFragment newInstance() {
-        MyWordFragment fragment = new MyWordFragment();
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
