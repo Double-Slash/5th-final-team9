@@ -3,6 +3,8 @@
     package="com.memoria">
 
     <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.PermissionActivity"></activity>
+        <activity android:name=".activity.DataRestoreActivity"></activity>
+        <activity android:name=".activity.DataBackupActivity" />
+        <activity android:name=".activity.PermissionActivity" />
         <activity android:name=".activity.MemoryAddActivity" />
         <activity android:name=".activity.WordAddActivity" />
         <activity android:name=".activity.WordListActivity" />
@@ -24,11 +28,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LockScreenActivity" />
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
 
         <service android:name=".service.ScreenService" />
 
         <receiver android:name=".service.ScreenReceiver" />
+        <receiver android:name=".service.BroadcastD" />
     </application>
 
 </manifest>

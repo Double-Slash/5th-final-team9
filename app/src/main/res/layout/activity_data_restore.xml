@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingTop="40dp"
+    android:paddingHorizontal="20dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="비밀번호 입력"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/bold_text"/>
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="141dp"
+        android:layout_height="158dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="49dp"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="10sp"
+        android:layout_marginLeft="15dp"
+        android:text="백업 시에
+                    설정한
+                    비밀번호를
+                    입력해주세요. "
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/pwLayout"
+        android:layout_width="391dp"
+        android:layout_height="58dp"
+        android:layout_below="@+id/text"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editpw"
+            android:layout_width="277dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword" />
+
+        <ImageView
+            android:layout_width="83dp"
+            android:layout_height="41dp"
+            android:layout_weight="1" />
+        <!--app:srcCompat="@drawable/check"-->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/restoreButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="데이터 복원하기"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:background="@drawable/shape_rectangle_mint"
+        android:padding="15dp"/>
+
+</RelativeLayout>

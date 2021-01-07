@@ -76,19 +76,24 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="61dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="표시단어 설정"
                 android:textColor="@color/medium_text"
                 android:textSize="14dp" />
 
-            <ImageButton
-                android:id="@+id/lockButton"
+            <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="center"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/lockButton"
+                android:layout_width="60dp"
+                android:layout_height="29dp"
                 android:background="@android:color/transparent"
+                android:scaleType="center"
                 android:src="@drawable/ic_right" />
 
         </LinearLayout>
@@ -153,19 +158,23 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="61dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="주기 설정"
                 android:textColor="@color/medium_text"
                 android:textSize="14dp" />
 
-            <ImageButton
-                android:id="@+id/pushButton"
+            <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="center"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/pushButton"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:background="@android:color/transparent"
+                android:scaleType="center"
                 android:src="@drawable/ic_right" />
         </LinearLayout>
 
@@ -203,19 +212,24 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="데이터 백업"
                 android:textColor="@color/medium_text"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/backupButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="center"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:background="@android:color/transparent"
+                android:scaleType="center"
                 android:src="@drawable/ic_right" />
         </LinearLayout>
 
@@ -228,17 +242,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="데이터 복원"
                 android:textColor="@color/medium_text"
                 android:textSize="14dp" />
 
-            <ImageButton
-                android:id="@+id/recoverButton"
+            <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/restoreButton"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:scaleType="center"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_right" />
