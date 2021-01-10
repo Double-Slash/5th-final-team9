@@ -1,4 +1,4 @@
-package com.memoria.activity;
+package com.memoria.activity.intro;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ public class PermissionActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PermissionActivity.this, MainActivity.class);
+                Intent intent = new Intent(PermissionActivity.this, GoalSettingActivity.class);
                 startActivity(intent);
                 finish();
             }

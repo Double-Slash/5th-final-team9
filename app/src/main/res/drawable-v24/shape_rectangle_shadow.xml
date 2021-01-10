@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#05CCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#08CCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#0ACCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#0DCCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#0FCCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#12CCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="20dp"/>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
+            <solid android:color="#14CCCCCC" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="19dp"/>
+            <solid android:color="@android:color/white" /> </shape> </item>
+
+</layer-list>
