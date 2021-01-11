@@ -18,46 +18,55 @@
         android:textSize="18dp"
         android:textStyle="bold" />
 
-
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendarView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/title_text"
-        app:mcv_selectionColor="@color/bold_text"
-        app:mcv_showOtherDates="defaults" />
+        android:scrollbars="none"
+        android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/todaygoal_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/calendarView"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:text="일별 달성량"
-        android:textColor="@color/bold_text"
-        android:textSize="14dp"
-        android:textStyle="bold" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/todaygoal_text"
-        android:layout_toEndOf="@id/todaygoal_text"
-        android:foregroundGravity="center"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/goal" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/todaygoad_list"
-        android:layout_below="@id/todaygoal_text"
-        android:layout_marginTop="20dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="horizontal" />
+        android:layout_height="wrap_content"
+        >
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mcv_selectionColor="@color/bold_text"
+            app:mcv_showOtherDates="defaults" />
 
 
+        <TextView
+            android:id="@+id/todaygoal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calendarView"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:text="일별 달성량"
+            android:textColor="@color/bold_text"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/goal_modify_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/todaygoal_text"
+            android:layout_toEndOf="@id/todaygoal_text"
+            android:foregroundGravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="center"
+            android:src="@drawable/goal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/todaygoad_list"
+            android:layout_below="@id/todaygoal_text"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="horizontal" />
+    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
