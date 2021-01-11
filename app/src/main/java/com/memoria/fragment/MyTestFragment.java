@@ -23,7 +23,6 @@ public class MyTestFragment extends Fragment {
 
     View view;
     Button start;
-    TextView comment;
     MyTestFragment2 fragment2;
     MainActivity activity;
     public static final int REQUEST_CODE = 100;

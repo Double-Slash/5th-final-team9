@@ -8,6 +8,7 @@ public class MyWord implements Serializable {
     private String englishWord;
     private String koreanWord;
     private String date;    //날짜 YYYY-MM-DD
+    private int correct;
 
     public MyWord(){}
 
@@ -42,4 +43,10 @@ public class MyWord implements Serializable {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public int getCorrect(){ return correct;}
+
+    public void setCorrect(int correct){ this.correct= correct;}
+
+
 }
