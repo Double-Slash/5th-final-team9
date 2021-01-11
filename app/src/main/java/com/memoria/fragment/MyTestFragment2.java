@@ -1,5 +1,6 @@
 package com.memoria.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.memoria.R;
+import com.memoria.activity.TestActivity;
 import com.memoria.adapter.GridViewAdapter;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.decorator.GridItemView;
@@ -24,8 +26,6 @@ public class MyTestFragment2 extends Fragment {
 
     View view;
     Button start2;
-    TextView comment;
-    public static final int REQUEST_CODE = 100;
 
     private MyWordDBHelper myWordDBHelper;
 
@@ -76,6 +76,14 @@ public class MyTestFragment2 extends Fragment {
                 else{
                     start2.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+        start2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TestActivity.class);
+                intent.putStringArrayListExtra("SELECTED_GROUP", selectedStrings);
+                startActivity(intent);
             }
         });
 

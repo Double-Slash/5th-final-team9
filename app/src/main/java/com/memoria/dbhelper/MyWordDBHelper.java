@@ -22,6 +22,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     public static final String COL_ENGLISH_WORD = "englishWord";
     public static final String COL_KOREAN_WORD = "koreanWord";
     public static final String COL_DATE = "date";
+    public static final String COL_CORRECT="correct";
 
     SQLiteDatabase db;
 
@@ -37,6 +38,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
                 + COL_GROUP_NAME + " text not null,"
                 + COL_ENGLISH_WORD + " text,"
                 + COL_KOREAN_WORD + " text,"
+                + COL_CORRECT + "integer,"
                 + COL_DATE + " date);"
         );
     }
@@ -48,6 +50,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_ENGLISH_WORD, myWord.getEnglishWord());
         contentValues.put(COL_KOREAN_WORD, myWord.getKoreanWord());
         contentValues.put(COL_DATE, myWord.getDate());
+        contentValues.put(COL_CORRECT,myWord.getCorrect());
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 

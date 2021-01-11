@@ -23,7 +23,8 @@
         <activity android:name=".activity.WordAddActivity" />
         <activity android:name=".activity.WordListActivity" />
         <activity android:name=".activity.WordGroupAddActivity" />
-        <activity android:name=".activity.intro.IntroActivity">
+        <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
