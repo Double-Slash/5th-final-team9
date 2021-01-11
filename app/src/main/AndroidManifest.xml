@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".activity.SetTimeActivity"></activity>
+        <activity android:name=".activity.DataRestoreActivity" />
         <activity android:name=".activity.intro.GoalSettingActivity"/>
         <activity android:name=".activity.DataRestoreActivity" />
         <activity android:name=".activity.DataBackupActivity" />
