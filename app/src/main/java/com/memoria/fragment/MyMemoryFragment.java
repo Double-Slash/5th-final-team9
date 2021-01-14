@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.memoria.R;
 import com.memoria.activity.MemoryAddActivity;
+import com.memoria.adapter.GridAdapter;
 import com.memoria.adapter.MemoryListAdapter;
 import com.memoria.dbhelper.MyMemoryDBHelper;
 import com.memoria.modeldata.MyMemory;
@@ -23,6 +25,9 @@ public class MyMemoryFragment extends Fragment {
 
     View view;
     ImageButton addBtn;
+    TextView editBtn;
+    TextView completeBtn;
+    boolean delVisible =false;
 
     public static final int REQUEST_CODE = 100;
 
@@ -72,10 +77,29 @@ public class MyMemoryFragment extends Fragment {
             }
         });
 
+        editBtn = view.findViewById(R.id.edit_btn);
+        completeBtn = view.findViewById(R.id.complete_btn);
+
+        View.OnClickListener onEditCompleteClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId()==R.id.edit_btn) setEditBtn();
+                else if (v.getId()==R.id.complete_btn) setCompleteBtn();
+                memoryListAdapter = new MemoryListAdapter(getActivity(), 0, myMemoryArrayList, delVisible);
+                listView.setAdapter(memoryListAdapter);
+            }
+        };
+
+        if (delVisible) setEditBtn();
+        else setCompleteBtn();
+
+        editBtn.setOnClickListener(onEditCompleteClickListener);
+        completeBtn.setOnClickListener(onEditCompleteClickListener);
+
         myMemoryArrayList = myMemoryDBHelper.selectAllMemoryList();
 
         listView = view.findViewById(R.id.memory_list);
-        memoryListAdapter = new MemoryListAdapter(getContext(), 0, myMemoryArrayList);
+        memoryListAdapter = new MemoryListAdapter(getContext(), 0, myMemoryArrayList, delVisible);
 
         listView.setAdapter(memoryListAdapter);
 
@@ -91,10 +115,23 @@ public class MyMemoryFragment extends Fragment {
                 return;
             }
             myMemoryArrayList = myMemoryDBHelper.selectAllMemoryList();
-            memoryListAdapter = new MemoryListAdapter(getActivity(), 0, myMemoryArrayList);
+            memoryListAdapter = new MemoryListAdapter(getActivity(), 0, myMemoryArrayList, delVisible);
             listView.setAdapter(memoryListAdapter);
 
         }
     }
 
+    private void setEditBtn(){
+        delVisible = true;
+        editBtn.setVisibility(View.GONE);
+        completeBtn.setVisibility(View.VISIBLE);
+        addBtn.setEnabled(false);
+    }
+
+    private void setCompleteBtn(){
+        delVisible = false;
+        editBtn.setVisibility(View.VISIBLE);
+        completeBtn.setVisibility(View.GONE);
+        addBtn.setEnabled(true);
+    }
 }
