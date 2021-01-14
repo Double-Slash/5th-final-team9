@@ -24,6 +24,7 @@ public class BroadcastD extends BroadcastReceiver {
         builder.setSmallIcon(R.drawable.logo)
                 .setContentTitle("메모리아 캐치프레이즈")
                 .setContentText("이제 공부할 시간입니다!")
+                .setWhen(System.currentTimeMillis())
                 .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
                 .setContentIntent(pendingIntent).setAutoCancel(true);
 
