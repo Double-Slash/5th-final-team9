@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.memoria.modeldata.MyWord;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 
 public class MyWordDBHelper extends SQLiteOpenHelper {
@@ -22,7 +23,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
     public static final String COL_ENGLISH_WORD = "englishWord";
     public static final String COL_KOREAN_WORD = "koreanWord";
     public static final String COL_DATE = "date";
-    public static final String COL_CORRECT="correct";
+//    public static final String COL_CORRECT="correct";
 
     SQLiteDatabase db;
 
@@ -38,9 +39,15 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
                 + COL_GROUP_NAME + " text not null,"
                 + COL_ENGLISH_WORD + " text,"
                 + COL_KOREAN_WORD + " text,"
-                + COL_CORRECT + "integer,"
+//                + COL_CORRECT + "integer,"
                 + COL_DATE + " date);"
         );
+    }
+
+    //삭제
+    public void deleteGroub(String groupName){
+//        String sql = "delete from " + TABLE_NAME + " where " + COL_GROUP_NAME + " = " + groupName + "';";
+        db.delete(TABLE_NAME, COL_GROUP_NAME + " = ? ", new String[]{groupName});
     }
 
     //단어추가
@@ -50,7 +57,7 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_ENGLISH_WORD, myWord.getEnglishWord());
         contentValues.put(COL_KOREAN_WORD, myWord.getKoreanWord());
         contentValues.put(COL_DATE, myWord.getDate());
-        contentValues.put(COL_CORRECT,myWord.getCorrect());
+//        contentValues.put(COL_CORRECT,myWord.getCorrect());
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
