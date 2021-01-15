@@ -96,8 +96,6 @@ public class CalendarFragment extends Fragment {
                 int Month = date.getMonth() + 1;
                 int Day = date.getDay();
 
-
-
                 Log.i("Year test", Year + "");
                 Log.i("Month test", Month + "");
                 Log.i("Day test", Day + "");
@@ -137,7 +135,7 @@ public class CalendarFragment extends Fragment {
 
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
-            calendar.add(Calendar.MONTH, -2);
+//            calendar.add(Calendar.MONTH, -2);
             for (int i = 0; i < 30; i++) {
                 CalendarDay day = CalendarDay.from(calendar);
                 dates.add(day);

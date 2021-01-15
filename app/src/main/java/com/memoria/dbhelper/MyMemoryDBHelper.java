@@ -38,6 +38,12 @@ public class MyMemoryDBHelper extends SQLiteOpenHelper {
         );
     }
 
+    //삭제
+    public void deleteMemory(String englishMemory){
+//        String sql = "delete from " + TABLE_NAME + " where " + COL_GROUP_NAME + " = " + groupName + "';";
+        db.delete(TABLE_NAME, COL_ENGLISH_MEMORY + " = ? ", new String[]{englishMemory});
+    }
+
     //문장(Memory)추가
     public boolean insertMemory(MyMemory myMemory){
         ContentValues contentValues = new ContentValues();

@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:background="@drawable/shape_rectangle_list">
+    android:gravity="center">
 
     <TextView
         android:id="@+id/memory_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:padding="20dp"
         android:text="The ultimate measure of a person is not where they
 stand in moments of comfort and convenience, but
 where they stand in times of challenge and controve
 rsy."
         android:textColor="#000000"
+        android:background="@drawable/shape_rectangle_list"
         android:textSize="14dp" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/delete_x_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        android:src="@drawable/delete"/>
+
+</RelativeLayout>

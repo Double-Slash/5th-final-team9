@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     >
+
     <TextView
         android:id="@+id/group_name"
         android:layout_width="165dp"
@@ -17,5 +18,15 @@
         android:textColor="@color/bold_text"
         android:textSize="20dp"
         tools:ignore="RtlSymmetry" />
+
+    <ImageButton
+        android:id="@+id/delete_x_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        android:src="@drawable/delete"/>
 
 </RelativeLayout>

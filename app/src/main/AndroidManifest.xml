@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.intro.GoalSettingActivity"/>
+        <activity android:name=".activity.SetTimeActivity"></activity>
         <activity android:name=".activity.DataRestoreActivity" />
+        <activity android:name=".activity.intro.GoalSettingActivity"/>
         <activity android:name=".activity.DataBackupActivity" />
         <activity android:name=".activity.intro.PermissionActivity" />
         <activity android:name=".activity.MemoryAddActivity" />
@@ -22,7 +23,7 @@
         <activity android:name=".activity.WordListActivity" />
         <activity android:name=".activity.WordGroupAddActivity" />
         <activity android:name=".activity.TestActivity"/>
-        <activity android:name=".activity.IntroActivity">
+        <activity android:name=".activity.intro.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

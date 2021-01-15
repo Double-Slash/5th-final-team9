@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +28,9 @@ public class MyWordFragment extends Fragment {
 
     View view;
     ImageButton addBtn;
+    TextView editBtn;
+    TextView completeBtn;
+    boolean delVisible =false;
 
     public static final int REQUEST_CODE = 100;
 
@@ -77,7 +83,6 @@ public class MyWordFragment extends Fragment {
         myWords = myWordDBHelper.selectWordGroupList();
 
         gridView = view.findViewById(R.id.word_grid_list);
-        adapter = new GridAdapter(getActivity(), 0, myWords);
 
         addBtn = view.findViewById(R.id.add_btn);
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +93,26 @@ public class MyWordFragment extends Fragment {
             }
         });
 
+        editBtn = view.findViewById(R.id.edit_btn);
+        completeBtn = view.findViewById(R.id.complete_btn);
+
+        View.OnClickListener onEditCompleteClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId()==R.id.edit_btn) setEditBtn();
+                else if (v.getId()==R.id.complete_btn) setCompleteBtn();
+                adapter = new GridAdapter(getActivity(), 0, myWords, delVisible);
+                gridView.setAdapter(adapter);
+            }
+        };
+
+        if (delVisible) setEditBtn();
+        else setCompleteBtn();
+
+        editBtn.setOnClickListener(onEditCompleteClickListener);
+        completeBtn.setOnClickListener(onEditCompleteClickListener);
+
+        adapter = new GridAdapter(getActivity(), 0, myWords,delVisible);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,10 +136,22 @@ public class MyWordFragment extends Fragment {
             }
 //            String returnGroupName = data.getExtras().getString("groupAddName");
             myWords = myWordDBHelper.selectWordGroupList();
-            adapter = new GridAdapter(getActivity(), 0, myWords);
+            adapter = new GridAdapter(getActivity(), 0, myWords, false);
             gridView.setAdapter(adapter);
-
         }
     }
 
+    private void setEditBtn(){
+        delVisible = true;
+        editBtn.setVisibility(View.GONE);
+        completeBtn.setVisibility(View.VISIBLE);
+        addBtn.setEnabled(false);
+    }
+
+    private void setCompleteBtn(){
+        delVisible = false;
+        editBtn.setVisibility(View.VISIBLE);
+        completeBtn.setVisibility(View.GONE);
+        addBtn.setEnabled(true);
+    }
 }

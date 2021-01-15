@@ -7,8 +7,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +25,10 @@ import com.memoria.R;
 import com.memoria.activity.DataBackupActivity;
 import com.memoria.activity.DataRestoreActivity;
 import com.memoria.activity.MainActivity;
+import com.memoria.activity.SetTimeActivity;
 import com.memoria.service.BroadcastD;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -39,7 +43,11 @@ public class OptionFragment extends Fragment {
     private ImageButton backupButton;
     private ImageButton restoreButton;
 
+    static private int setM;
+    static private int setH;
+
     View view;
+    int time = 1;
 
     public OptionFragment() {
         // Required empty public constructor
@@ -55,11 +63,40 @@ public class OptionFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_option, container, false);
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            time = Integer.parseInt(bundle.getString("send"));
+            Log.d("time", Integer.toString(time));
+        }
+
+        //SharedPreferences sharedPreferences = getShared
+
+        pushButton = view.findViewById(R.id.pushButton);
+        pushButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SetTimeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         switchOfPush = view.findViewById(R.id.switchOfPush);
         switchOfPush.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){ new AlarmHATT(getContext()).setTime(); }
+                if (isChecked) {
+//                    long now = System.currentTimeMillis();
+//                    Date mDate = new Date(now);
+//                    SimpleDateFormat simpleH = new SimpleDateFormat("hh");
+//                    SimpleDateFormat simpleM = new SimpleDateFormat("mm");
+//                    String getH = simpleH.format(mDate);
+//                    String getM = simpleM.format(mDate);
+//
+//                    if (Integer.toString(setH) == getH && Integer.toString(setM) == getM) {
+                        new AlarmHATT(getContext()).setTime(time);
+//                    }
+                }
+                else { new AlarmHATT(getContext()).cancelTime();}
             }
         });
 
@@ -67,8 +104,8 @@ public class OptionFragment extends Fragment {
         backupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getActivity(), DataBackupActivity.class);
-                startActivity(intent1);
+                Intent intent = new Intent(getActivity(), DataBackupActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -76,8 +113,8 @@ public class OptionFragment extends Fragment {
         restoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getActivity(), DataRestoreActivity.class);
-                startActivity(intent2);
+                Intent intent = new Intent(getActivity(), DataRestoreActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -95,14 +132,29 @@ public class OptionFragment extends Fragment {
         Intent intent = new Intent(getActivity(), BroadcastD.class);
         PendingIntent sender = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
 
-        public void setTime() {
+        private void setTime(int time) {
             Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 20);
-            //calendar.set(Calendar.MINUTE, 30);
+            //calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 14);
+            calendar.set(Calendar.MINUTE, 00);
+//            setH = calendar.get(Calendar.HOUR_OF_DAY);
+//            setM = calendar.get(Calendar.MINUTE);
+
+            long interval = 1000 * 60 * 60 * 24;
+            long aTime = System.currentTimeMillis();
+            long bTime = calendar.getTimeInMillis();
+            if(aTime > bTime){
+                bTime += interval;
+            }
+
             //알람 예약
-            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    1000 * 60 * 60 * 24, sender);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, bTime,
+                    interval * time, sender);
+        }
+        private void cancelTime(){
+            if (am!= null) {
+                am.cancel(sender);
+            }
         }
     }
 

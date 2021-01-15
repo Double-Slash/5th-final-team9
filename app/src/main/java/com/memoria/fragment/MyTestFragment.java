@@ -42,7 +42,7 @@ public class MyTestFragment extends Fragment {
         myWords = myWordDBHelper.selectWordGroupList();
 
         gridView = view.findViewById(R.id.test_grid_list);
-        adapter = new GridAdapter(getActivity(), 0, myWords);
+        adapter = new GridAdapter(getActivity(), 0, myWords, false);
         gridView.setAdapter(adapter);
 
         gridView.setOnTouchListener(new View.OnTouchListener(){
