@@ -60,7 +60,6 @@ public class MyTestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).replaceFragment(fragment2);
-
             }
         });
 

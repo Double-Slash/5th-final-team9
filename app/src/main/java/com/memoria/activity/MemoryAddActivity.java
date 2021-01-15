@@ -49,6 +49,5 @@ public class MemoryAddActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

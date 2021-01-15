@@ -46,14 +46,11 @@ public class TestActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(answer.getText().toString()==element.getKoreanWord().toString()){
-
+                        
                     }
-
                 }
             });
-
         }
-
     }
 
     public void getList(){
