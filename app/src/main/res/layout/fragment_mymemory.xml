@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="40dp"
+    android:background="@color/white"
     android:paddingHorizontal="20dp">
 
     <ImageButton
@@ -21,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:text="My Memory"
         android:textSize="18dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_semibold"
         android:textColor="@color/bold_text"/>
 
     <TextView

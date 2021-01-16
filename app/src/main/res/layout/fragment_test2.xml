@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="20dp"
+    android:background="@color/white"
     android:paddingTop="40dp"
     android:paddingHorizontal="20dp">
 
@@ -14,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:text="Test"
         android:textSize="18dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_semibold"
         android:textColor="@color/bold_text"/>
 
     <GridView

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     tools:context=".activity.intro.IntroActivity">
 
     <LinearLayout
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:textColor="@color/black"
-        android:text="메모리아 캐치프레이즈"/>
+        android:text="작심365일 단어 암기습관"/>
     </LinearLayout>
 
     <TextView
