@@ -12,12 +12,11 @@
         android:layout_width="165dp"
         android:layout_height="165dp"
         android:background="@drawable/grid_shadow"
-        android:paddingTop="17dp"
-        android:paddingStart="20dp"
+        android:gravity="center"
         android:text="그룹1"
+        android:textStyle="bold"
         android:textColor="@color/bold_text"
-        android:fontFamily="@font/notosanscjkkr_bold"
-        android:textSize="23dp"
+        android:textSize="20dp"
         tools:ignore="RtlSymmetry" />
 
     <ImageButton

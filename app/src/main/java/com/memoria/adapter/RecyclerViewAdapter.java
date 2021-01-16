@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.memoria.R;
+import com.memoria.modeldata.GoalAchieve;
 
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<com.memoria.adapter.RecyclerViewAdapter.ViewHolder> {
 
-    private final ArrayList<String> titleList;
-    private final ArrayList<String> countList;
+    private ArrayList<GoalAchieve> items;
     TextView goalTitle;
     TextView goalCount;
 
@@ -27,9 +27,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<com.memoria.adapte
         }
     }
 
-    public RecyclerViewAdapter(ArrayList<String> titleList, ArrayList<String> countList) {
-        this.titleList = titleList;
-        this.countList = countList;
+    public RecyclerViewAdapter(ArrayList<GoalAchieve> list) {
+        items = list;
     }
 
     @Override
@@ -42,14 +41,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<com.memoria.adapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
-        goalTitle.setText(titleList.get(position));
-        goalCount.setText(countList.get(position));
+        goalTitle.setText(items.get(position).getGoalTitle());
+        goalCount.setText(items.get(position).getGoalCount());
 
     }
 
     @Override
     public int getItemCount() {
-        return titleList.size() ;
+        return items.size() ;
     }
 
 }

@@ -5,23 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="20dp"
-    android:paddingTop="30dp"
-    android:background="@color/white"
+    android:paddingTop="40dp"
     android:paddingHorizontal="20dp">
 
-<!--    <TextView-->
-<!--        android:id="@+id/title_text"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:text="목표 달성"-->
-<!--        android:textColor="@color/bold_text"-->
-<!--        android:textSize="18dp"-->
-<!--        android:textStyle="bold" />-->
-
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="목표 달성"
+        android:textColor="@color/bold_text"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_below="@id/title_text"
         android:scrollbars="none"
         android:layout_height="match_parent">
 
@@ -29,13 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:mcv_weekDayTextAppearance="@style/calendar_dayOfWeek"
+            app:mcv_selectionColor="@color/bold_text"
             app:mcv_showOtherDates="defaults" />
+
 
         <TextView
             android:id="@+id/todaygoal_text"

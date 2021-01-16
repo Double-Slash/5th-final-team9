@@ -3,7 +3,6 @@ package com.memoria.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
