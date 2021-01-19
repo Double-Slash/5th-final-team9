@@ -33,8 +33,10 @@ public class TestActivity extends AppCompatActivity {
     ArrayList<MyWord> wordList;
     TextView english;
     EditText answer;
+    TextView title;
     Button next;
     MyWord currentWord;
+    int current=1;
     int currentCorrect=0;
     String Question=null;
     String Answer=null;
@@ -57,6 +59,9 @@ public class TestActivity extends AppCompatActivity {
         mytest.setTotal(wordList.size());
         mytest.setStatus("unlock");
 
+        //title
+        title=findViewById(R.id.title_text);
+        title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
         // 랜덤으로 섞는다.
         Collections.shuffle(wordList);
         english = findViewById(R.id.test_english);
@@ -64,6 +69,7 @@ public class TestActivity extends AppCompatActivity {
         currentWord = wordList.get(0);
         english.setText(currentWord.getEnglishWord());
         answer = findViewById(R.id.test_answer);
+
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
@@ -75,6 +81,7 @@ public class TestActivity extends AppCompatActivity {
                 Answer=answer.getText().toString().replaceAll(" ", "");
                 Question=currentWord.getKoreanWord().replaceAll(" ", "");
                 if(Answer.equals(Question)){
+                    title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
                     currentCorrect+=1;
                     if (wordList.size() == 1) {
                         mytest.setCorrect(currentCorrect);
@@ -85,6 +92,8 @@ public class TestActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
+                        current+=1;
+                        title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
                         wordList.remove(0);
                         currentWord = wordList.get(0);
                         english.setText(currentWord.getEnglishWord());
@@ -104,6 +113,8 @@ public class TestActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
+                        current+=1;
+                        title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
                         wordList.remove(0);
                         currentWord = wordList.get(0);
                         english.setText(currentWord.getEnglishWord());
