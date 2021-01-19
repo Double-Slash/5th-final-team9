@@ -15,7 +15,6 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.SetTimeActivity"></activity>
         <activity android:name=".activity.DataRestoreActivity" />
-        <activity android:name=".activity.intro.GoalSettingActivity"/>
         <activity android:name=".activity.DataBackupActivity" />
         <activity android:name=".activity.intro.PermissionActivity" />
         <activity android:name=".activity.MemoryAddActivity" />
