@@ -13,23 +13,33 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.memoria.R;
+import com.memoria.dbhelper.MyTestDBHelper;
 import com.memoria.dbhelper.MyWordDBHelper;
+import com.memoria.modeldata.MyTest;
 import com.memoria.modeldata.MyWord;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class TestActivity extends AppCompatActivity {
 
     ArrayList<String> selectGroup;
     private MyWordDBHelper myWordDBHelper;
+    private MyTestDBHelper myTestDBHelper;
     ArrayList<MyWord> myWords;
     ArrayList<MyWord> wordList;
     TextView english;
     EditText answer;
     Button next;
     MyWord currentWord;
+    int currentCorrect=0;
+    String Question=null;
+    String Answer=null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,11 @@ public class TestActivity extends AppCompatActivity {
             myWords = myWordDBHelper.selectWordListByGroup(element);
             wordList.addAll(myWords);
         }
+        MyTest mytest = new MyTest();
+        myTestDBHelper = new MyTestDBHelper(this);
+        mytest.setTotal(wordList.size());
+        mytest.setStatus("unlock");
+
         // 랜덤으로 섞는다.
         Collections.shuffle(wordList);
         english = findViewById(R.id.test_english);
@@ -49,11 +64,23 @@ public class TestActivity extends AppCompatActivity {
         currentWord = wordList.get(0);
         english.setText(currentWord.getEnglishWord());
         answer = findViewById(R.id.test_answer);
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        String formatDate = sdfNow.format(date);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (answer.getText().toString() == currentWord.getKoreanWord()) {
+                Answer=answer.getText().toString().replaceAll(" ", "");
+                Question=currentWord.getKoreanWord().replaceAll(" ", "");
+                if(Answer.equals(Question)){
+                    currentCorrect+=1;
                     if (wordList.size() == 1) {
+                        mytest.setCorrect(currentCorrect);
+                        mytest.setPercent(currentCorrect/mytest.getTotal());
+                        mytest.setDate(formatDate);
+                        myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -69,12 +96,16 @@ public class TestActivity extends AppCompatActivity {
                     }
                 } else {
                     if (wordList.size() == 1) {
+                        mytest.setCorrect(currentCorrect);
+                        mytest.setPercent(currentCorrect/mytest.getTotal());
+                        mytest.setDate(formatDate);
+                        myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        currentWord = wordList.get(1);
                         wordList.remove(0);
+                        currentWord = wordList.get(0);
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList.size()==1){
@@ -87,4 +118,5 @@ public class TestActivity extends AppCompatActivity {
 
         });
     }
+
 }

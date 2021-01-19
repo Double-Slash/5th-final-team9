@@ -4,20 +4,24 @@ import java.io.Serializable;
 
 public class MyTest implements Serializable {
 
-    private String groupName;
     private int correct;
-    private int miss;
+    private int total;
     private float percent;
+    private String status;
     private String date;    //날짜 YYYY-MM-DD
 
     public MyTest(){}
 
-    public String getGroupName() {
-        return groupName;
+    public String getStatus(){ return status;}
+
+    public void setStatus(String status){ this.status=status;}
+
+    public int getTotal() {
+        return total;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setTotal(int total) {
+        this.total =total;
     }
 
     public int getCorrect() {
