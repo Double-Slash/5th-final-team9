@@ -38,11 +38,35 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/pwLayout"
+        android:id="@+id/mailLayout"
         android:layout_width="391dp"
         android:layout_height="58dp"
         android:layout_marginLeft="15dp"
         android:layout_below="@+id/text"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editmail"
+            android:layout_width="277dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="email"
+            android:inputType="textPassword" />
+
+        <ImageView
+            android:layout_width="83dp"
+            android:layout_height="41dp"
+            android:layout_weight="1" />
+        <!--app:srcCompat="@drawable/check"-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pwLayout"
+        android:layout_width="391dp"
+        android:layout_height="58dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/mailLayout"
         android:orientation="horizontal">
 
         <EditText
