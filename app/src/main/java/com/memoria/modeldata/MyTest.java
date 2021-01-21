@@ -12,6 +12,14 @@ public class MyTest implements Serializable {
 
     public MyTest(){}
 
+    public MyTest(int correct, int total, float percent, String status, String date) {
+        this.correct = correct;
+        this.total = total;
+        this.percent = percent;
+        this.status = status;
+        this.date = date;
+    }
+
     public String getStatus(){ return status;}
 
     public void setStatus(String status){ this.status=status;}

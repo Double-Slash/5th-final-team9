@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.memoria.R;
 import com.memoria.activity.MainActivity;
 import com.memoria.adapter.GridAdapter;
+import com.memoria.dbhelper.GoalDBHelper;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.modeldata.MyWord;
 

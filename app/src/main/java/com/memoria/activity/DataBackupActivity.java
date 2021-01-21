@@ -62,6 +62,11 @@ public class DataBackupActivity extends AppCompatActivity {
                 if (editpw.getText().toString().equals(checkpw.getText().toString())) {
                     Log.d("editpw",editpw.getText().toString());
                     Log.d("checkpw",checkpw.getText().toString());
+
+                    if (!(editpw.getText().toString()==checkpw.getText().toString())){
+                        Toast.makeText(getApplicationContext(),"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     try {
                         URL url = new URL("http://221.167.222.53:3001/data");
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -78,25 +83,25 @@ public class DataBackupActivity extends AppCompatActivity {
                         JSONObject dataObject = new JSONObject();
 
                         //Word
-                        JSONObject wordObject = new JSONObject();
                         JSONArray wordArray = new JSONArray();
                         MyWordDBHelper myWordDBHelper = new MyWordDBHelper(DataBackupActivity.this);
                         ArrayList<MyWord> wordArrayList = myWordDBHelper.selectAllDataList();
                         for (MyWord m : wordArrayList){
+                            JSONObject wordObject = new JSONObject();
                             wordObject.put("wGroupName",m.getGroupName());
                             wordObject.put("wEnglishWord",m.getEnglishWord());
                             wordObject.put("wKoreanWord",m.getKoreanWord());
                             wordObject.put("wDate",m.getDate());
+                            System.out.println(m.getGroupName() + " , " + m.getEnglishWord() + ", " + m.getKoreanWord());
                             wordArray.put(wordObject);
                         }
-                        System.out.println(wordArray);
 
                         //Memory
-                        JSONObject memoryObject = new JSONObject();
                         JSONArray memoryArray = new JSONArray();
                         MyMemoryDBHelper mymemoryDBHelper = new MyMemoryDBHelper(DataBackupActivity.this);
                         ArrayList<MyMemory> mymemoryArrayList = mymemoryDBHelper.selectAllDataList();
                         for (MyMemory m : mymemoryArrayList){
+                            JSONObject memoryObject = new JSONObject();
                             memoryObject.put("mEnglishMemory",m.getEnglishMemory());
                             memoryObject.put("mDate",m.getDate());
                             memoryArray.put(memoryObject);
@@ -104,11 +109,11 @@ public class DataBackupActivity extends AppCompatActivity {
                         System.out.println(memoryArray);
 
                         //Goal
-                        JSONObject goalObject = new JSONObject();
                         JSONArray goalArray = new JSONArray();
                         GoalDBHelper goalDBHelper = new GoalDBHelper(DataBackupActivity.this);
                         ArrayList<Goal> goalArrayList = goalDBHelper.selectAllData();
                         for (Goal g : goalArrayList){
+                            JSONObject goalObject = new JSONObject();
                             goalObject.put("gGoalWord",g.getGoalWord());
                             goalObject.put("gGoalMemory",g.getGoalMemory());
                             goalObject.put("gGoalTest",g.getGoalTest());
@@ -120,7 +125,6 @@ public class DataBackupActivity extends AppCompatActivity {
                             goalObject.put("gDate", g.getDate());
                             goalArray.put(goalObject);
                         }
-                        System.out.println(goalArray);
 
                         dataObject.put("word",wordArray);
                         dataObject.put("memory",memoryArray);
@@ -128,7 +132,6 @@ public class DataBackupActivity extends AppCompatActivity {
 
                         jsonObject.accumulate("password", editpw.getText().toString());
                         jsonObject.accumulate("data", dataObject.toString());
-                        System.out.println(jsonObject);
 
                         Log.d("성공3","성공3t");
 
@@ -137,9 +140,8 @@ public class DataBackupActivity extends AppCompatActivity {
 
                         OutputStream os = null;
                         os = httpURLConnection.getOutputStream();
-                        System.out.println(json);
                         Log.d("성공41",os.toString());
-                        os.write(json.getBytes("euc-kr"));
+                        os.write(json.getBytes("UTF-8"));
                         os.flush();
                         os.close();
                         Log.d("성공5", "성공5t");

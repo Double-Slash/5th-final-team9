@@ -12,6 +12,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.memoria.R;
+import com.memoria.dbhelper.GoalDBHelper;
+import com.memoria.dbhelper.MyMemoryDBHelper;
+import com.memoria.dbhelper.MyWordDBHelper;
+import com.memoria.modeldata.Goal;
+import com.memoria.modeldata.MyMemory;
+import com.memoria.modeldata.MyWord;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -131,14 +137,86 @@ public class DataRestoreActivity extends AppCompatActivity {
             Log.d("menu",menuObject.toString());
 
             String word = menuObject.getString("word");
-            JSONObject wordObject = new JSONObject(word);
-            Log.d("word",wordObject.toString());
+            String memory = menuObject.getString("memory");
+            String goal = menuObject.getString("goal");
 
+            addWord(word);
+            addMemory(memory);
+            addGoal(goal);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    private void addWord(String word){
+        JSONArray wordArray = null;
+        try {
+            wordArray = new JSONArray(word);
+            MyWordDBHelper myWordDBHelper = new MyWordDBHelper(this);
+
+            for(int w = 0; w < wordArray.length(); w++){
+                JSONObject wObject = wordArray.getJSONObject(w);
+                String wGroupName = wObject.getString("wGroupName");
+                String wEnglishWord = wObject.getString("wEnglishWord");
+                String wKoreanWord = wObject.getString("wKoreanWord");
+                String wDate = wObject.getString("wDate");
+
+
+                if (myWordDBHelper.insertWord(new MyWord(wGroupName, wEnglishWord, wKoreanWord, wDate)))
+                    Log.d("myWordDB 데이터 추가 실패", wDate);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void addMemory(String memory){
+        JSONArray wordArray = null;
+        try {
+            wordArray = new JSONArray(memory);
+            MyMemoryDBHelper myMemoryDBHelper = new MyMemoryDBHelper(this);
+            for(int w = 0; w < wordArray.length(); w++){
+                JSONObject wObject = wordArray.getJSONObject(w);
+                String mEnglishMemory = wObject.getString("mEnglishMemory");
+                String mDate = wObject.getString("mDate");
+
+                if (myMemoryDBHelper.insertMemory(new MyMemory(mEnglishMemory, mDate)))
+                    Log.d("myWordDB 데이터 추가 실패", mDate);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void addGoal(String goal){
+        JSONArray wordArray = null;
+        try {
+            wordArray = new JSONArray(goal);
+            GoalDBHelper goalDBHelper = new GoalDBHelper(this);
+            goalDBHelper.deleteAllData();
+            for(int w = 0; w < wordArray.length(); w++){
+                JSONObject wObject = wordArray.getJSONObject(w);
+                int gGoalWord = wObject.getInt("gGoalWord");
+                int gGoalMemory = wObject.getInt("gGoalMemory");
+                int gGoalTest = wObject.getInt("gGoalTest");
+                int gGoalQuiz = wObject.getInt("gGoalQuiz");
+                int gAchieveWord = wObject.getInt("gAchieveWord");
+                int gAchieveMemory = wObject.getInt("gAchieveMemory");
+                int gAchieveTest = wObject.getInt("gAchieveTest");
+                int gAchieveQUiz = wObject.getInt("gAchieveQUiz");
+                String gDate = wObject.getString("gDate");
+
+                if(!goalDBHelper.insertGoalAndAchieve(new Goal(gGoalWord, gGoalMemory, gGoalTest, gGoalQuiz, gAchieveWord, gAchieveMemory ,gAchieveTest, gAchieveQUiz, gDate)))
+                    Log.d("goalDB 데이터 추가 실패", gDate);
+
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 }

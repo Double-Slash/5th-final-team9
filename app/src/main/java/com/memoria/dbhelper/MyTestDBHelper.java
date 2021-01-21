@@ -2,12 +2,17 @@ package com.memoria.dbhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.memoria.modeldata.Goal;
 import com.memoria.modeldata.MyTest;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MyTestDBHelper extends SQLiteOpenHelper {
@@ -55,10 +60,26 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public int selectMaxPercent() {
+        String sql = " SELECT " + COL_PERCENT + " FROM " + TABLE_NAME + " where " + COL_DATE + " = '"+ getNowDate()  +"' ORDER BY " + COL_PERCENT + " DESC LIMIT 1;";
+        Cursor result = db.rawQuery(sql, null);
+
+        if (result.moveToFirst()) return result.getInt(0);
+
+        result.close();
+        return -1;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS MyWordTable");
         onCreate(db);
     }
 
+    public String getNowDate(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        return sdfNow.format(date);
+    }
 }

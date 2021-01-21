@@ -2,6 +2,7 @@ package com.memoria.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -24,9 +25,11 @@ import com.memoria.activity.intro.GoalSettingActivity;
 import com.memoria.adapter.RecyclerViewAdapter;
 import com.memoria.dbhelper.GoalDBHelper;
 import com.memoria.dbhelper.MyMemoryDBHelper;
+import com.memoria.dbhelper.MyTestDBHelper;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.decorator.EventDecorator;
 import com.memoria.modeldata.Goal;
+import com.memoria.modeldata.MyTest;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -63,6 +66,7 @@ public class CalendarFragment extends Fragment {
     MyWordDBHelper wordDBHelper;
     MyMemoryDBHelper memoryDBHelper;
     GoalDBHelper goalDBHelper;
+    MyTestDBHelper testDBHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,15 +82,17 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-        wordDBHelper = new MyWordDBHelper(getContext());
-        memoryDBHelper = new MyMemoryDBHelper(getContext());
-        goalDBHelper = new GoalDBHelper(getContext());
+        Context context = getContext();
+        wordDBHelper = new MyWordDBHelper(context);
+        memoryDBHelper = new MyMemoryDBHelper(context);
+        goalDBHelper = new GoalDBHelper(context);
+        testDBHelper = new MyTestDBHelper(context);
 
         //달성률 업데이트
         Goal goal = new Goal();
         goal.setAchieveWord(wordDBHelper.selectWordCountByDate(getNowDate()));
         goal.setAchieveMemory(memoryDBHelper.selectMemoryCountByDate(getNowDate()));
-        goal.setAchieveTest(20);
+        goal.setAchieveTest(testDBHelper.selectMaxPercent());
         goal.setAchieveQuiz(60);
         goalDBHelper.updateAchieve(goal);
 
@@ -100,8 +106,9 @@ public class CalendarFragment extends Fragment {
         materialCalendarViewSetting();
 
         goalDBHelper.close();
-        memoryDBHelper.close();
         wordDBHelper.close();
+        memoryDBHelper.close();
+        testDBHelper.close();
 
         //캘린더 처음 올 경우만 가이드 등장
         prefs = getActivity().getSharedPreferences("Pref", MODE_PRIVATE);

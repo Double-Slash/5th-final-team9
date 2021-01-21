@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="email"
-            android:inputType="textPassword" />
+            android:inputType="textEmailAddress" />
 
         <ImageView
             android:layout_width="83dp"

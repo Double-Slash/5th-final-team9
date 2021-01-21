@@ -7,6 +7,13 @@ public class MyMemory implements Serializable {
     private String englishMemory;
     private String date;    //날짜 YYYY-MM-DD
 
+    public MyMemory(){}
+
+    public MyMemory(String englishMemory, String date) {
+        this.englishMemory = englishMemory;
+        this.date = date;
+    }
+
     public String getEnglishMemory() {
         return englishMemory;
     }

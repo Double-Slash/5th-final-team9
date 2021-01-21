@@ -58,6 +58,7 @@ public class TestActivity extends AppCompatActivity {
         myTestDBHelper = new MyTestDBHelper(this);
         mytest.setTotal(wordList.size());
         mytest.setStatus("unlock");
+        System.out.println("wordlist.size" + wordList.size() +"," + mytest.getTotal());
 
         //title
         title=findViewById(R.id.title_text);
@@ -85,7 +86,7 @@ public class TestActivity extends AppCompatActivity {
                     currentCorrect+=1;
                     if (wordList.size() == 1) {
                         mytest.setCorrect(currentCorrect);
-                        mytest.setPercent(currentCorrect/mytest.getTotal());
+                        mytest.setPercent(currentCorrect*100/mytest.getTotal());
                         mytest.setDate(formatDate);
                         myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -106,7 +107,7 @@ public class TestActivity extends AppCompatActivity {
                 } else {
                     if (wordList.size() == 1) {
                         mytest.setCorrect(currentCorrect);
-                        mytest.setPercent(currentCorrect/mytest.getTotal());
+                        mytest.setPercent(currentCorrect*100/mytest.getTotal());
                         mytest.setDate(formatDate);
                         myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

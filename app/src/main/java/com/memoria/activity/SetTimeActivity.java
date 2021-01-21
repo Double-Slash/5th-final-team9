@@ -1,26 +1,37 @@
 package com.memoria.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ListPopupWindow;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputLayout;
 import com.memoria.R;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SetTimeActivity extends AppCompatActivity {
 
-    String[] items = {"1일", "2일", "3일", "4일", "5일", "6일", "7일", "8일", "9일", "10일",
-            "11일", "12일", "13일", "14일", "15일", "16일", "17일", "18일", "19일", "20일",
-            "21일", "22일", "23일", "24일", "25일", "26일", "27일", "28일", "29일", "30일"};
+    String[] items = {"1일", "2일", "3일", "4일", "5일", "6일", "일주일", "한달"};
 
     private Spinner spinner;
     private Button spinnerButton;
