@@ -9,38 +9,38 @@
     android:paddingHorizontal="20dp">
 
     <TextView
-        android:id="@+id/title_text"
+        android:id="@+id/title_text3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Test"
+        android:text="표시단어 설정"
         android:textSize="18dp"
         android:fontFamily="@font/montserrat_semibold"
         android:textColor="@color/bold_text"/>
 
-
     <GridView
-        android:id="@+id/test_grid_list"
+        android:id="@+id/test_grid_list3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:layout_above="@id/btn_test_start"
-        android:layout_below="@id/title_text"
+        android:layout_above="@id/btn_test_start3"
+        android:layout_below="@id/title_text3"
         android:layout_marginTop="45dp"
+        android:choiceMode="multipleChoice"
         android:numColumns="2"
-        android:paddingTop="30dp" />
+        android:listSelector="@android:color/transparent"
+        android:paddingTop="30dp"/>
 
     <Button
-        android:id="@+id/btn_test_start"
+        android:id="@+id/btn_test_start3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
-        android:text="테스트 시작하기"
-        android:textSize="18dp"
+        android:text="그룹 선택하기"
         android:textColor="@color/main_mint"
-        android:background="@drawable/shape_rectangle_mint_coners"
+        android:textSize="20dp"
+        android:background="@drawable/shape_rectangle_shadow"
         android:padding="15dp"/>
-
 
 </RelativeLayout>

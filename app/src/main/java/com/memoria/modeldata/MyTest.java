@@ -8,16 +8,18 @@ public class MyTest implements Serializable {
     private int total;
     private float percent;
     private String status;
+    private String groups;
     private String date;    //날짜 YYYY-MM-DD
 
     public MyTest(){}
 
-    public MyTest(int correct, int total, float percent, String status, String date) {
+    public MyTest(int correct, int total, float percent, String groups, String status, String date) {
         this.correct = correct;
         this.total = total;
         this.percent = percent;
         this.status = status;
         this.date = date;
+        this.groups = groups;
     }
 
     public String getStatus(){ return status;}
@@ -43,6 +45,10 @@ public class MyTest implements Serializable {
     public float getPercent(){return percent;}
 
     public void setPercent(float percent){this.percent=percent;}
+
+    public String getGroup() {return groups;}
+
+    public void setGroup(String groups){this.groups=groups;}
 
     public String getDate() {
         return date;

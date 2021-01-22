@@ -163,7 +163,7 @@ public class GoalDBHelper extends SQLiteOpenHelper {
 
         long result = db.update(TABLE_NAME, values, COL_DATE + " = " + getNowDate(), null);
 
-        if( result == -1) return false;
+        if( result == 0) return false;
         else return true;
     }
 

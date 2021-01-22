@@ -29,6 +29,8 @@ public class TestActivity extends AppCompatActivity {
     private MyTestDBHelper myTestDBHelper;
     ArrayList<MyWord> myWords;
     ArrayList<MyWord> wordList;
+    ArrayList<MyWord> wordList1;
+
     TextView english;
     EditText answer;
     TextView title;
@@ -38,6 +40,7 @@ public class TestActivity extends AppCompatActivity {
     int currentCorrect=0;
     String Question=null;
     String Answer=null;
+    String GroupName =null;
 
 
 
@@ -48,16 +51,19 @@ public class TestActivity extends AppCompatActivity {
         selectGroup = getIntent().getStringArrayListExtra("SELECTED_GROUP");
         myWordDBHelper = new MyWordDBHelper(this);
         wordList = new ArrayList<MyWord>();
+
+        myTestDBHelper = new MyTestDBHelper(this);
+
         for (String element : selectGroup) {
             myWords = myWordDBHelper.selectWordListByGroup(element);
+            GroupName=GroupName+element+",";
             wordList.addAll(myWords);
         }
+        GroupName = GroupName.substring(4, GroupName.length()-1);
         MyTest mytest = new MyTest();
-        myTestDBHelper = new MyTestDBHelper(this);
+        mytest.setGroup(GroupName);
         mytest.setTotal(wordList.size());
         mytest.setStatus("unlock");
-        System.out.println("wordlist.size" + wordList.size() +"," + mytest.getTotal());
-
         //title
         title=findViewById(R.id.title_text);
         title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
@@ -99,8 +105,8 @@ public class TestActivity extends AppCompatActivity {
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList.size()==1){
-                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
                             next.setText("DONE");
+
                         }
                     }
                 } else {
@@ -121,7 +127,6 @@ public class TestActivity extends AppCompatActivity {
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList.size()==1){
-                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
                             next.setText("DONE");
                         }
                     }
