@@ -2,11 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.memoria">
 
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -33,13 +31,7 @@
         <activity android:name=".activity.WordListActivity" />
         <activity android:name=".activity.intro.GoalSettingActivity" />
         <activity android:name=".activity.WordGroupAddActivity" />
-        <activity android:name=".activity.TestActivity"/>
-        <activity android:name=".activity.LockScreenActivity" />
-        <service android:name=".service.ScreenService" />
-        <receiver android:name=".service.ScreenReceiver" />
-        <activity android:name= ".activity.intro.GoalSettingActivity"/>
-
-
+        <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.intro.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,22 +39,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LockScreenActivity" />
         <activity android:name=".activity.MainActivity" />
+
+        <service android:name=".service.ScreenService" />
+
+        <receiver android:name=".service.ScreenReceiver" />
         <receiver android:name=".service.BroadcastD" />
-        <receiver
-
-            android:name=".service.RestartReceiver"
-            android:process=".remote" >
-
-            <intent-filter>
-
-                <action android:name="RestartReceiver.restart" />
-
-            </intent-filter>
-
-        </receiver>
-
-
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
@@ -47,6 +49,8 @@ public class OptionFragment extends Fragment {
     //mylockfragment
     MyLockTestFragment fragment2;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     static private int setM;
     static private int setH;
@@ -67,6 +71,9 @@ public class OptionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_option, container, false);
+
+        preferences = this.getActivity().getSharedPreferences("checked",0);
+        editor = preferences.edit();
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -114,24 +121,29 @@ public class OptionFragment extends Fragment {
         });
 
         switchOfPush = view.findViewById(R.id.switchOfPush);
+        //switchOfPush.setChecked());
         switchOfPush.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-//                    long now = System.currentTimeMillis();
-//                    Date mDate = new Date(now);
-//                    SimpleDateFormat simpleH = new SimpleDateFormat("hh");
-//                    SimpleDateFormat simpleM = new SimpleDateFormat("mm");
-//                    String getH = simpleH.format(mDate);
-//                    String getM = simpleM.format(mDate);
-//
-//                    if (Integer.toString(setH) == getH && Integer.toString(setM) == getM) {
-                        new AlarmHATT(getContext()).setTime(time);
-//                    }
+                    editor.putString("checked", "1");
+                    editor.commit();
+                    Log.d("editor",editor.toString());
                 }
-                else { new AlarmHATT(getContext()).cancelTime();}
+                else {
+                    editor.putString("checked", "0");
+                    editor.commit();
+                }
             }
         });
+
+        if (preferences.getString("checked","").equals("1")){
+            switchOfPush.setChecked(true);
+            new AlarmHATT(getContext()).setTime(time);
+        } else{
+            switchOfPush.setChecked(false);
+            new AlarmHATT(getContext()).cancelTime();
+        }
 
         backupButton = view.findViewById(R.id.backupButton);
         backupButton.setOnClickListener(new View.OnClickListener() {
