@@ -97,8 +97,7 @@ public class ScreenService extends Service {
 
         if(isOn){
 
-            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 60000, sender);
-
+            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 1000, 10000, sender);
         }else{
 
             am.cancel(sender);

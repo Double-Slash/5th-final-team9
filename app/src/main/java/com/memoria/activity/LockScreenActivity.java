@@ -63,8 +63,13 @@ public class LockScreenActivity extends AppCompatActivity {
         }
         wordList1 = new ArrayList<MyWord>();
         Collections.shuffle(wordList);
-        for(int i =0; i<=3;i++ ){
-            wordList1.add(wordList.get(i));
+        if(wordList.size() <=3){
+            wordList1= wordList;
+        }
+        else{
+            for(int i =0; i<=3;i++ ){
+                wordList1.add(wordList.get(i));
+            }
         }
         MyTest mytest = new MyTest();
         myTestDBHelper = new MyTestDBHelper(this);
