@@ -1,7 +1,5 @@
 package com.memoria.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.memoria.R;
 import com.memoria.dbhelper.GoalDBHelper;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 public class DataBackupActivity extends AppCompatActivity {
 
     private EditText editmail;
-    private  EditText editpw;
+    private EditText editpw;
     private EditText checkpw;
     private Button backupButton;
 
@@ -53,6 +53,28 @@ public class DataBackupActivity extends AppCompatActivity {
         editmail = findViewById(R.id.editmail);
         editpw = findViewById(R.id.editpw);
         checkpw = findViewById(R.id.checkpw);
+
+//        checkpw.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (!(editpw.getText().toString()==checkpw.getText().toString())){
+////                    Toast.makeText(getApplicationContext(),"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+//                    checkpw.setError("비밀번호가 일치하지 않습니다");
+//                }else
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                if ((editpw.getText().toString()==checkpw.getText().toString())){
+//                    checkpw.setError(null);
+//                }
+//            }
+//        });
         backupButton = findViewById(R.id.backupButton);
 
         backupButton.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +82,10 @@ public class DataBackupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("클릭","클릭");
                 if (editpw.getText().toString().equals(checkpw.getText().toString())) {
-                    Log.d("editpw",editpw.getText().toString());
-                    Log.d("checkpw",checkpw.getText().toString());
+                    Log.d("editpw", editpw.getText().toString());
+                    Log.d("checkpw", checkpw.getText().toString());
 
-                    if (!(editpw.getText().toString()==checkpw.getText().toString())){
+                    if (!(editpw.getText().toString().equals(checkpw.getText().toString()))){
                         Toast.makeText(getApplicationContext(),"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -86,12 +108,12 @@ public class DataBackupActivity extends AppCompatActivity {
                         JSONArray wordArray = new JSONArray();
                         MyWordDBHelper myWordDBHelper = new MyWordDBHelper(DataBackupActivity.this);
                         ArrayList<MyWord> wordArrayList = myWordDBHelper.selectAllDataList();
-                        for (MyWord m : wordArrayList){
+                        for (MyWord m : wordArrayList) {
                             JSONObject wordObject = new JSONObject();
-                            wordObject.put("wGroupName",m.getGroupName());
-                            wordObject.put("wEnglishWord",m.getEnglishWord());
-                            wordObject.put("wKoreanWord",m.getKoreanWord());
-                            wordObject.put("wDate",m.getDate());
+                            wordObject.put("wGroupName", m.getGroupName());
+                            wordObject.put("wEnglishWord", m.getEnglishWord());
+                            wordObject.put("wKoreanWord", m.getKoreanWord());
+                            wordObject.put("wDate", m.getDate());
                             System.out.println(m.getGroupName() + " , " + m.getEnglishWord() + ", " + m.getKoreanWord());
                             wordArray.put(wordObject);
                         }
@@ -100,10 +122,10 @@ public class DataBackupActivity extends AppCompatActivity {
                         JSONArray memoryArray = new JSONArray();
                         MyMemoryDBHelper mymemoryDBHelper = new MyMemoryDBHelper(DataBackupActivity.this);
                         ArrayList<MyMemory> mymemoryArrayList = mymemoryDBHelper.selectAllDataList();
-                        for (MyMemory m : mymemoryArrayList){
+                        for (MyMemory m : mymemoryArrayList) {
                             JSONObject memoryObject = new JSONObject();
-                            memoryObject.put("mEnglishMemory",m.getEnglishMemory());
-                            memoryObject.put("mDate",m.getDate());
+                            memoryObject.put("mEnglishMemory", m.getEnglishMemory());
+                            memoryObject.put("mDate", m.getDate());
                             memoryArray.put(memoryObject);
                         }
                         System.out.println(memoryArray);
@@ -112,12 +134,12 @@ public class DataBackupActivity extends AppCompatActivity {
                         JSONArray goalArray = new JSONArray();
                         GoalDBHelper goalDBHelper = new GoalDBHelper(DataBackupActivity.this);
                         ArrayList<Goal> goalArrayList = goalDBHelper.selectAllData();
-                        for (Goal g : goalArrayList){
+                        for (Goal g : goalArrayList) {
                             JSONObject goalObject = new JSONObject();
-                            goalObject.put("gGoalWord",g.getGoalWord());
-                            goalObject.put("gGoalMemory",g.getGoalMemory());
-                            goalObject.put("gGoalTest",g.getGoalTest());
-                            goalObject.put("gGoalQuiz",g.getGoalQuiz());
+                            goalObject.put("gGoalWord", g.getGoalWord());
+                            goalObject.put("gGoalMemory", g.getGoalMemory());
+                            goalObject.put("gGoalTest", g.getGoalTest());
+                            goalObject.put("gGoalQuiz", g.getGoalQuiz());
                             goalObject.put("gAchieveWord", g.getAchieveWord());
                             goalObject.put("gAchieveMemory", g.getAchieveMemory());
                             goalObject.put("gAchieveTest", g.getAchieveTest());
@@ -126,59 +148,71 @@ public class DataBackupActivity extends AppCompatActivity {
                             goalArray.put(goalObject);
                         }
 
-                        dataObject.put("word",wordArray);
-                        dataObject.put("memory",memoryArray);
-                        dataObject.put("goal",goalArray);
+//                        //Test
+//                        JSONArray testArrayJson = new JSONArray();
+//                        MyTestDBHelper myTestDBHelper = new MyTestDBHelper(DataBackupActivity.this);
+//                        ArrayList<MyTest> testArrayList = myTestDBHelper.selectAllData();
+//                        for (MyTest t : testArrayList){
+//                            JSONObject goalObject = new JSONObject();
+//                            goalObject.put("gGoalWord",t.getGoalWord());
+//                            goalObject.put("gGoalMemory",g.getGoalMemory());
+//                            goalObject.put("gGoalTest",g.getGoalTest());
+//                            goalObject.put("gGoalQuiz",g.getGoalQuiz());
+//                            goalArray.put(goalObject);
+//                        }
+
+                        dataObject.put("word", wordArray);
+                        dataObject.put("memory", memoryArray);
+                        dataObject.put("goal", goalArray);
 
                         jsonObject.accumulate("password", editpw.getText().toString());
                         jsonObject.accumulate("data", dataObject.toString());
 
-                        Log.d("성공3","성공3t");
+                        Log.d("성공3", "성공3t");
 
                         String json = jsonObject.toString();
-                        Log.d("성공4","성공4t");
+                        Log.d("성공4", "성공4t");
 
                         OutputStream os = null;
                         os = httpURLConnection.getOutputStream();
-                        Log.d("성공41",os.toString());
+                        Log.d("성공41", os.toString());
                         os.write(json.getBytes("UTF-8"));
                         os.flush();
                         os.close();
                         Log.d("성공5", "성공5t");
 
                         InputStream is = null;
-                        try{
+                        try {
                             int reponseCode = httpURLConnection.getResponseCode();
                             Log.d("서버 응답", Integer.toString(reponseCode));
                             BufferedReader buf = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                             String inputLine;
                             StringBuffer reponse = new StringBuffer();
-                            while ((inputLine = buf.readLine()) != null){
+                            while ((inputLine = buf.readLine()) != null) {
                                 reponse.append(inputLine);
                             }
                             buf.close();
                             Log.d("Message:", reponse.toString());
-                        }finally {
+                        } finally {
                             httpURLConnection.disconnect();
                         }
                     } catch (MalformedURLException e) {
-                            Log.d("MalformedURLException e","MalformedURLException e");
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            Log.d("IOException e","IOException e");
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            Log.d("JSONException e","JSONException e");
-                            e.printStackTrace();
-                        }finally{
-                            Intent intent = new Intent(DataBackupActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(getApplicationContext(),"백업에 성공했습니다.",Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(),"비밀번호가 틀립니다.",Toast.LENGTH_LONG).show();
-                    }
+                        Log.d("MalformedURLException e", "MalformedURLException e");
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        Log.d("IOException e", "IOException e");
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        Log.d("JSONException e", "JSONException e");
+                        e.printStackTrace();
+                    } finally {
+                        Intent intent = new Intent(DataBackupActivity.this, DataBackupResultActivity.class);
+                        startActivity(intent);
+                        finish();
 
+//                            Toast.makeText(getApplicationContext(),"백업에 성공했습니다.",Toast.LENGTH_LONG).show();
+                    }
+                }
             }
 
         });

@@ -14,7 +14,7 @@
     <color name="bold_text">#000000</color>
     <color name="medium_text">#000000</color>
     <color name="main_mint">#7AEAC3</color>
-<!--    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#CCCCCC</color>-->
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/main_mint</color>
     <drawable name="cal_item">@drawable/shape_circle_lightgray_white_coners</drawable>
 
 </resources>

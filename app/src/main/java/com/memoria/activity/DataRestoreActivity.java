@@ -1,7 +1,5 @@
 package com.memoria.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.memoria.R;
 import com.memoria.dbhelper.GoalDBHelper;
@@ -27,7 +27,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -114,6 +113,7 @@ public class DataRestoreActivity extends AppCompatActivity {
                     }finally{
                         Intent intent = new Intent(DataRestoreActivity.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }else{
                     Toast.makeText(getApplicationContext(),"비밀번호를 입력하세요.",Toast.LENGTH_LONG).show();
