@@ -60,6 +60,19 @@
         android:layout_centerInParent="true"/>
 
     <Button
+        android:id="@+id/detailBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="결과 상세보기"
+        android:textColor="@color/main_mint"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_above="@id/backMainBtn"
+        android:background="@drawable/shape_rectangle_mint_coners"
+        android:padding="15dp"/>
+
+    <Button
         android:id="@+id/backMainBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

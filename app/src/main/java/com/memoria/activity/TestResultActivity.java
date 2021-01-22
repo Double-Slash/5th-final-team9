@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.memoria.R;
+import com.memoria.modeldata.MyWord;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +28,11 @@ public class TestResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         float score = intent.getFloatExtra("mytestScore", 0);
-        System.out.println(score + " mytest score");
+        ArrayList<MyWord> wordArrayList = (ArrayList<MyWord>) intent.getSerializableExtra("wordTestResult");
 
+        for(MyWord m : wordArrayList) {
+            System.out.println(m.getUserTestWord() + " " + m.getEnglishWord() + " " +  m.getKoreanWord() +" " + " mytest score");
+        }
         TextView scoreText = findViewById(R.id.scoreTxt);
         scoreText.setText((int) score+"%");
         if (score==0) scoreText.setTextColor(Color.RED);
@@ -37,6 +41,18 @@ public class TestResultActivity extends AppCompatActivity {
         backMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Button detailResult = findViewById(R.id.detailBtn);
+        detailResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), TestResultDetailsActivity.class);
+                intent.putExtra("wordTestResult", wordArrayList);
+                startActivity(intent);
                 finish();
             }
         });

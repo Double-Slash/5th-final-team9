@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.memoria.modeldata.Goal;
 import com.memoria.modeldata.MyTest;
-import com.memoria.modeldata.MyWord;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -71,7 +69,7 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         if (result.moveToFirst()) return result.getInt(0);
 
         result.close();
-        return -1;
+        return 0;
     }
 
     @Override

@@ -21,17 +21,22 @@
         android:textSize="18dp"
         android:textStyle="bold" />
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"
+        android:layout_above="@id/backMainBtn">
+
     <ListView
         android:id="@+id/word_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:dividerHeight="-1dp"
         android:scrollbars="none"
-        android:divider="#FFFFFF"
-        android:layout_below="@id/title"
-        android:layout_above="@id/backMainBtn"/>
+        android:divider="#FFFFFF"/>
 
+    </HorizontalScrollView>
 
     <Button
         android:id="@+id/backMainBtn"

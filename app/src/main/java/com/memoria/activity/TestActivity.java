@@ -2,7 +2,6 @@ package com.memoria.activity;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +30,8 @@ public class TestActivity extends AppCompatActivity {
     ArrayList<MyWord> wordList;
     ArrayList<MyWord> wordList1;
 
+    ArrayList<MyWord> userWordList;
+
     TextView english;
     EditText answer;
     TextView title;
@@ -51,6 +52,7 @@ public class TestActivity extends AppCompatActivity {
         selectGroup = getIntent().getStringArrayListExtra("SELECTED_GROUP");
         myWordDBHelper = new MyWordDBHelper(this);
         wordList = new ArrayList<MyWord>();
+        userWordList = new ArrayList<MyWord>();
 
         myTestDBHelper = new MyTestDBHelper(this);
 
@@ -85,6 +87,11 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Answer=answer.getText().toString().replaceAll(" ", "");
                 Question=currentWord.getKoreanWord().replaceAll(" ", "");
+                MyWord myWord = new MyWord();
+                myWord.setEnglishWord(currentWord.getEnglishWord());
+                myWord.setKoreanWord(currentWord.getKoreanWord());
+                myWord.setUserTestWord(Answer);
+                userWordList.add(myWord);
                 if(Answer.equals(Question)){
                     title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
                     currentCorrect+=1;
@@ -95,6 +102,7 @@ public class TestActivity extends AppCompatActivity {
                         myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), TestResultActivity.class);
                         intent.putExtra("mytestScore", mytest.getPercent());
+                        intent.putExtra("wordTestResult", userWordList);
                         startActivity(intent);
                         finish();
                     } else {
@@ -117,6 +125,7 @@ public class TestActivity extends AppCompatActivity {
                         myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), TestResultActivity.class);
                         intent.putExtra("mytestScore", mytest.getPercent());
+                        intent.putExtra("wordTestResult", userWordList);
                         startActivity(intent);
                         finish();
                     } else {
@@ -134,6 +143,7 @@ public class TestActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
 

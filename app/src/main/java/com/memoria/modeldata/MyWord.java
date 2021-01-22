@@ -9,6 +9,8 @@ public class MyWord implements Serializable {
     private String koreanWord;
     private String date;    //날짜 YYYY-MM-DD
 
+    private String userTestWord;
+
     public MyWord(){}
 
     public MyWord(String groupName, String englishWord, String koreanWord, String date) {
@@ -50,4 +52,11 @@ public class MyWord implements Serializable {
         this.date = date;
     }
 
+    public String getUserTestWord() {
+        return userTestWord;
+    }
+
+    public void setUserTestWord(String userTestWord) {
+        this.userTestWord = userTestWord;
+    }
 }
