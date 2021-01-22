@@ -111,7 +111,6 @@ public class LockScreenActivity extends AppCompatActivity {
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList1.size()==1){
-                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
                             next.setText("DONE");
                         }
                     }
@@ -132,7 +131,6 @@ public class LockScreenActivity extends AppCompatActivity {
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList1.size()==1){
-                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
                             next.setText("DONE");
                         }
                     }

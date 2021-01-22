@@ -105,8 +105,8 @@ public class TestActivity extends AppCompatActivity {
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList.size()==1){
-                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
                             next.setText("DONE");
+
                         }
                     }
                 } else {
@@ -127,7 +127,6 @@ public class TestActivity extends AppCompatActivity {
                         english.setText(currentWord.getEnglishWord());
                         answer.getText().clear();
                         if(wordList.size()==1){
-                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
                             next.setText("DONE");
                         }
                     }

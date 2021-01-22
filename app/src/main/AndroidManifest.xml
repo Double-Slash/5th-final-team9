@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.memoria">
 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -41,6 +42,19 @@
         </activity>
         <activity android:name=".activity.LockScreenActivity" />
         <activity android:name=".activity.MainActivity" />
+        <receiver
+
+            android:name=".service.RestartReceiver"
+            android:process=".remote" >
+
+            <intent-filter>
+
+                <action android:name="RestartReceiver.restart" />
+
+            </intent-filter>
+
+        </receiver>
+
 
         <service android:name=".service.ScreenService" />
 

@@ -20,7 +20,8 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:text="NEXT"
-        android:textColor="#000000"
+        android:background="@color/white"
+        android:textColor="#7AEAC3"
         android:textSize="20dp" />
     <TextView
         android:id="@+id/test_english"
