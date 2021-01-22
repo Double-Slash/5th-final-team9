@@ -72,8 +72,10 @@ public class OptionFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_option, container, false);
 
-        preferences = this.getActivity().getSharedPreferences("checked",0);
+        preferences = this.getActivity().getSharedPreferences("lock",0);
+        preferences = this.getActivity().getSharedPreferences("push",0);
         editor = preferences.edit();
+
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -88,15 +90,27 @@ public class OptionFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    Intent intent = new Intent(getActivity(), ScreenService.class);
-                    getActivity().startService(intent);
+                    editor.putString("lock", "1");
+                    editor.commit();
                 }
                 else{
-                    Intent intent = new Intent(getActivity(), ScreenService.class);
-                    getActivity().stopService(intent);
+                    editor.putString("lock", "0");
+                    editor.commit();
                 }
             }
         });
+
+        if (preferences.getString("lock","").equals("1")){
+            switchOfLock.setChecked(true);
+            Intent intent = new Intent(getActivity(), ScreenService.class);
+            getActivity().startService(intent);
+        } else{
+            switchOfLock.setChecked(false);
+            Intent intent = new Intent(getActivity(), ScreenService.class);
+            getActivity().stopService(intent);
+
+        }
+
         fragment2=new MyLockTestFragment();
 
         lockButton=view.findViewById(R.id.lockButton);
@@ -126,18 +140,17 @@ public class OptionFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    editor.putString("checked", "1");
+                    editor.putString("push", "1");
                     editor.commit();
-                    Log.d("editor",editor.toString());
                 }
                 else {
-                    editor.putString("checked", "0");
+                    editor.putString("push", "0");
                     editor.commit();
                 }
             }
         });
 
-        if (preferences.getString("checked","").equals("1")){
+        if (preferences.getString("push","").equals("1")){
             switchOfPush.setChecked(true);
             new AlarmHATT(getContext()).setTime(time);
         } else{
