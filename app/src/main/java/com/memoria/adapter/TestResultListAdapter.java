@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class TestResultListAdapter extends ArrayAdapter<MyWord> {
 
     private ArrayList<MyWord> items;
+    TextView wordNum;
 
     public TestResultListAdapter(Context context, int textViewResourceId, ArrayList<MyWord> objects) {
         super(context, textViewResourceId, objects);
@@ -32,13 +33,13 @@ public class TestResultListAdapter extends ArrayAdapter<MyWord> {
         }
 
         LinearLayout linearLayout = v.findViewById(R.id.item_layout);
-        TextView wordNum = v.findViewById(R.id.word_num);
+        wordNum = v.findViewById(R.id.word_num);
         TextView englishWordText = v.findViewById(R.id.english_word);
         TextView koreanWordText = v.findViewById(R.id.korean_word);
         TextView userWordText = v.findViewById(R.id.user_wrod);
 
-        if (items.get(position).getGroupName().equals("칼럼") ){
-            wordNum.setText("문제");
+        if (position==0){
+            wordNum.setText("번호");
             englishWordText.setText("단어");
             koreanWordText.setText("의미");
             userWordText.setText("답안");
@@ -48,12 +49,14 @@ public class TestResultListAdapter extends ArrayAdapter<MyWord> {
             koreanWordText.setTextColor(Color.BLACK);
             userWordText.setTextColor(Color.BLACK);
 
+            linearLayout.setBackgroundResource(R.drawable.shape_rectangle_shadow_white_coners_10);
             wordNum.setBackgroundResource(R.drawable.shape_rectangle_shadow_gray_10);
             englishWordText.setBackgroundResource(R.drawable.shape_rectangle_shadow_gray_10);
             koreanWordText.setBackgroundResource(R.drawable.shape_rectangle_shadow_gray_10);
             userWordText.setBackgroundResource(R.drawable.shape_rectangle_shadow_gray_10);
         }else {
-
+            wordNum.setText(position+"");
+            linearLayout.setBackgroundResource(R.drawable.shape_rectangle_shadow_white_coners_10);
             if (!(items.get(position).getKoreanWord().equals(items.get(position).getUserTestWord()))) {
                 linearLayout.setBackgroundResource(R.drawable.shape_rectangle_shadow_red_coners_10);
                 wordNum.setTextColor(Color.RED);
@@ -64,7 +67,7 @@ public class TestResultListAdapter extends ArrayAdapter<MyWord> {
                 userWordText.setTextColor(Color.parseColor("#707070"));
             }
         }
-        wordNum.setText(position+"");
+
         englishWordText.setText(items.get(position).getEnglishWord());
         koreanWordText.setText(items.get(position).getKoreanWord());
         userWordText.setText(items.get(position).getUserTestWord());

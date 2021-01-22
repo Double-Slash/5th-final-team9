@@ -26,7 +26,6 @@
         android:scrollbars="none"
         android:layout_above="@id/btn_test_start"
         android:layout_below="@id/title_text"
-        android:layout_marginTop="45dp"
         android:numColumns="2"
         android:paddingTop="30dp" />
 
