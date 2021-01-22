@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="Test (4/30)"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -29,6 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
+        android:fontFamily="@font/notosanscjkkr_bold"
         android:text="TextView"
         android:textSize="30dp" />
 
@@ -42,6 +44,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
+        android:fontFamily="@font/notosanscjkkr_regular"
         android:layout_marginBottom="300dp"
         android:textSize="20dp"
         android:hint="여기에 답을 입력하세요"

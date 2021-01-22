@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingTop="40dp"
@@ -22,13 +23,14 @@
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="165dp"
-        android:layout_height="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_marginTop="53dp"
-        android:letterSpacing="-0.02"
-        android:lineSpacingExtra="10sp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/notosanscjkkr_bold"
+        android:letterSpacing="-0.04"
+        android:lineSpacingExtra="4sp"
         android:text="백업 데이터를\n암호화하기 위해\n백업용 비밀번호를\n설정합니다. "
         android:textColor="#000000"
         android:textSize="20dp"
@@ -37,6 +39,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_below="@id/text"
         android:orientation="vertical">
 
@@ -93,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:inputType="textPassword"
-                android:hint="password"
+                android:hint="repeat password"
                 android:layout_gravity="center"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +106,7 @@
         android:id="@+id/backupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
         android:text="데이터 백업하기"
         android:textColor="#ffffff"

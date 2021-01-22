@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingTop="40dp"
+    android:background="@color/white"
     android:paddingHorizontal="20dp">
 
     <TextView
@@ -21,18 +22,16 @@
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="141dp"
-        android:layout_height="158dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_marginTop="49dp"
-        android:letterSpacing="-0.02"
-        android:lineSpacingExtra="10sp"
+        android:layout_marginTop="20dp"
+        android:letterSpacing="-0.04"
+        android:lineSpacingExtra="4sp"
         android:layout_marginLeft="15dp"
-        android:text="백업 시에
-                    설정한
-                    비밀번호를
-                    입력해주세요. "
-        android:textColor="#000000"
+        android:text="백업 시에\n설정한\n비밀번호를\n입력해주세요. "
+        android:textColor="@color/black"
+        android:fontFamily="@font/notosanscjkkr_bold"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -64,6 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/text"
+        android:layout_margin="16dp"
         android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -109,7 +109,7 @@
         android:id="@+id/restoreButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
         android:text="데이터 복원하기"
         android:textColor="#ffffff"
