@@ -42,10 +42,11 @@
         </activity>
         <activity android:name=".activity.LockScreenActivity" />
         <activity android:name=".activity.MainActivity" />
+
         <receiver
 
             android:name=".service.RestartReceiver"
-            android:process=".remote" >
+            android:process=".remote">
 
             <intent-filter>
 
