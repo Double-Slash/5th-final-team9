@@ -98,6 +98,28 @@ public class GoalDBHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    //복원할때 씀
+    public boolean insertGoalAndAchieve (Goal goal){
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_GOAL_WORD, goal.getGoalWord());
+        contentValues.put(COL_GOAL_MEMORY, goal.getGoalMemory());
+        contentValues.put(COL_GOAL_TEST_PERCENT, goal.getGoalTest());
+        contentValues.put(COL_GOAL_QUIZ_PERCENT, goal.getGoalQuiz());
+        contentValues.put(COL_ACHIEVE_WORD, goal.getAchieveWord());
+        contentValues.put(COL_ACHIEVE_MEMORY, goal.getAchieveMemory());
+        contentValues.put(COL_ACHIEVE_TEST_PERCENT, goal.getAchieveTest());
+        contentValues.put(COL_ACHIEVE_QUIZ_PERCENT, goal.getAchieveQuiz());
+        contentValues.put(COL_DATE, goal.getDate());
+
+        long result = db.insert(TABLE_NAME, null, contentValues);
+
+        if( result == -1) return false;
+        else return true;
+    }
+
+
+
     public boolean selectExistTodayData(){
         String sql = "select " + COL_DATE
                 + " from " + TABLE_NAME + " where " + COL_DATE + " = date('" + getNowDate() + "')" + ";";
@@ -125,6 +147,8 @@ public class GoalDBHelper extends SQLiteOpenHelper {
                 result.getInt(7),
                 result.getInt(8),
                 result.getString(9));
+
+        result.close();
 
         return goal;
     }
@@ -200,6 +224,7 @@ public class GoalDBHelper extends SQLiteOpenHelper {
             goal.setGoalTest(results.getInt(3));
             goal.setGoalQuiz(results.getInt(4));
         }
+        results.close();
         return goal;
     }
 
@@ -216,6 +241,20 @@ public class GoalDBHelper extends SQLiteOpenHelper {
         if( result == -1) return false;
         else return true;
     }
+
+//    //달성률 수정(업데이트)-날짜기준 - 관리자용이므로 사용하는일이 없어야함. 임시로 만듬.
+//    public boolean updateAchieveByGoalDate(Goal goal) {
+//        ContentValues values = new ContentValues();
+//        values.put(COL_ACHIEVE_WORD, goal.getAchieveWord());
+//        values.put(COL_ACHIEVE_MEMORY, goal.getAchieveMemory());
+//        values.put(COL_ACHIEVE_TEST_PERCENT, goal.getAchieveTest());
+//        values.put(COL_ACHIEVE_QUIZ_PERCENT, goal.getAchieveQuiz());
+//
+//        long result = db.update(TABLE_NAME, values, COL_DATE + " = '" + goal.getDate() + "'", null);
+//
+//        if( result == -1) return false;
+//        else return true;
+//    }
 
     public ArrayList<Goal> selectAllData(){
         ArrayList<Goal> resultList = new ArrayList<>();
@@ -240,6 +279,10 @@ public class GoalDBHelper extends SQLiteOpenHelper {
         }
         results.close();
         return resultList;
+    }
+
+    public void deleteAllData(){
+        db.execSQL("delete from " + TABLE_NAME);
     }
 
     public String getNowDate(){

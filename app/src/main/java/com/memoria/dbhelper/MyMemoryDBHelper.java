@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.memoria.modeldata.MyMemory;
+import com.memoria.modeldata.MyWord;
 
 import java.util.ArrayList;
 
@@ -95,6 +96,24 @@ public class MyMemoryDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS MyMemoryTable");
         onCreate(db);
+    }
+
+    public ArrayList<MyMemory> selectAllDataList(){
+        ArrayList<MyMemory> resultList = new ArrayList<>();
+
+        String sql = "select *  from " + TABLE_NAME + " where " + COL_DATE + " is not null;";
+        Cursor results = db.rawQuery(sql, null);
+
+        if(results.moveToFirst()){
+            do{
+                MyMemory MyMemory = new MyMemory();
+                MyMemory.setEnglishMemory(results.getString(1));
+                MyMemory.setDate(results.getString(2));
+                resultList.add(MyMemory);
+            }while(results.moveToNext());
+        }
+        results.close();
+        return resultList;
     }
 
 }

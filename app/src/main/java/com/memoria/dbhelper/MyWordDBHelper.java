@@ -135,4 +135,24 @@ public class MyWordDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public ArrayList<MyWord> selectAllDataList(){
+        ArrayList<MyWord> resultList = new ArrayList<>();
+
+        String sql = "select *  from " + TABLE_NAME + " where " + COL_DATE + " is not null;";
+        Cursor results = db.rawQuery(sql, null);
+
+        if(results.moveToFirst()){
+            do{
+                MyWord myWord = new MyWord();
+                myWord.setGroupName(results.getString(1));
+                myWord.setEnglishWord(results.getString(2));
+                myWord.setKoreanWord(results.getString(3));
+                myWord.setDate(results.getString(4));
+                resultList.add(myWord);
+            }while(results.moveToNext());
+        }
+        results.close();
+        return resultList;
+    }
+
 }

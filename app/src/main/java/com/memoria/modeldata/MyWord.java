@@ -11,6 +11,13 @@ public class MyWord implements Serializable {
 
     public MyWord(){}
 
+    public MyWord(String groupName, String englishWord, String koreanWord, String date) {
+        this.groupName = groupName;
+        this.englishWord = englishWord;
+        this.koreanWord = koreanWord;
+        this.date = date;
+    }
+
     public String getGroupName() {
         return groupName;
     }

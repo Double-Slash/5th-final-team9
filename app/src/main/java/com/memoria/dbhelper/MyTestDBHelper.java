@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.memoria.modeldata.Goal;
 import com.memoria.modeldata.MyTest;
 
 import java.text.SimpleDateFormat;
@@ -59,6 +60,16 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
         if( result == -1) return false;
         else return true;
+    }
+
+    public int selectMaxPercent() {
+        String sql = " SELECT " + COL_PERCENT + " FROM " + TABLE_NAME + " where " + COL_DATE + " = '"+ getNowDate()  +"' ORDER BY " + COL_PERCENT + " DESC LIMIT 1;";
+        Cursor result = db.rawQuery(sql, null);
+
+        if (result.moveToFirst()) return result.getInt(0);
+
+        result.close();
+        return -1;
     }
 
     @Override
