@@ -92,8 +92,8 @@ public class CalendarFragment extends Fragment {
         Goal goal = new Goal();
         goal.setAchieveWord(wordDBHelper.selectWordCountByDate(getNowDate()));
         goal.setAchieveMemory(memoryDBHelper.selectMemoryCountByDate(getNowDate()));
-        goal.setAchieveTest(testDBHelper.selectMaxPercent());
-        goal.setAchieveQuiz(60);
+        goal.setAchieveTest(testDBHelper.selectUnLockMaxPercent());
+        goal.setAchieveQuiz(testDBHelper.selectLockMaxPercent());
         goalDBHelper.updateAchieve(goal);
 
         recyclerView = view.findViewById(R.id.todaygoad_list) ;

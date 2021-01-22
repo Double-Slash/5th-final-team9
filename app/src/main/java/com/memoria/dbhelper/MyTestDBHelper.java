@@ -62,8 +62,18 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public int selectMaxPercent() {
-        String sql = " SELECT " + COL_PERCENT + " FROM " + TABLE_NAME + " where " + COL_DATE + " = '"+ getNowDate()  +"' ORDER BY " + COL_PERCENT + " DESC LIMIT 1;";
+    public int selectUnLockMaxPercent() {
+        String sql = " SELECT " + COL_PERCENT + " FROM " + TABLE_NAME + " where " + COL_DATE + " = '"+ getNowDate()  +"' and " + COL_STATUS + " = 'unlock'" + " ORDER BY " + COL_PERCENT + " DESC LIMIT 1;";
+        Cursor result = db.rawQuery(sql, null);
+
+        if (result.moveToFirst()) return result.getInt(0);
+
+        result.close();
+        return 0;
+    }
+
+    public int selectLockMaxPercent() {
+        String sql = " SELECT " + COL_PERCENT + " FROM " + TABLE_NAME + " where " + COL_DATE + " = '"+ getNowDate()  +"' and " + COL_STATUS + " = 'lock'" + " ORDER BY " + COL_PERCENT + " DESC LIMIT 1;";
         Cursor result = db.rawQuery(sql, null);
 
         if (result.moveToFirst()) return result.getInt(0);

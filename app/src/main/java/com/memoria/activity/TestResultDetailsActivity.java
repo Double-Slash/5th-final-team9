@@ -25,7 +25,7 @@ public class TestResultDetailsActivity extends AppCompatActivity {
         ArrayList<MyWord> wordArrayList = (ArrayList<MyWord>) intent.getSerializableExtra("wordTestResult");
         MyWord myWord = new MyWord();
         myWord.setGroupName("칼럼");
-        myWord.setKoreanWord();
+//        myWord.setKoreanWord();
         wordArrayList.add(0, myWord); //0인덱스는 보기 넣을거라 그냥 빈 오브젝트넣음
 
         ListView listView = findViewById(R.id.word_list);
