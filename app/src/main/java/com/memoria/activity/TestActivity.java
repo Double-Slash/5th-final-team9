@@ -42,8 +42,6 @@ public class TestActivity extends AppCompatActivity {
     String Answer=null;
     String GroupName =null;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +104,6 @@ public class TestActivity extends AppCompatActivity {
                         answer.getText().clear();
                         if(wordList.size()==1){
                             next.setText("DONE");
-
                         }
                     }
                 } else {
@@ -132,9 +129,6 @@ public class TestActivity extends AppCompatActivity {
                     }
                 }
             }
-
         });
     }
-
-
 }
