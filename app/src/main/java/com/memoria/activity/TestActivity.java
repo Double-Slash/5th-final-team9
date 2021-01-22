@@ -1,7 +1,6 @@
 package com.memoria.activity;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import com.memoria.dbhelper.MyTestDBHelper;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.modeldata.MyTest;
 import com.memoria.modeldata.MyWord;
-
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,7 +87,8 @@ public class TestActivity extends AppCompatActivity {
                         mytest.setPercent(currentCorrect*100/mytest.getTotal());
                         mytest.setDate(formatDate);
                         myTestDBHelper.insertScore(mytest);
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), TestResultActivity.class);
+                        intent.putExtra("mytestScore", mytest.getPercent());
                         startActivity(intent);
                         finish();
                     } else {
@@ -110,7 +109,8 @@ public class TestActivity extends AppCompatActivity {
                         mytest.setPercent(currentCorrect*100/mytest.getTotal());
                         mytest.setDate(formatDate);
                         myTestDBHelper.insertScore(mytest);
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), TestResultActivity.class);
+                        intent.putExtra("mytestScore", mytest.getPercent());
                         startActivity(intent);
                         finish();
                     } else {
@@ -130,5 +130,6 @@ public class TestActivity extends AppCompatActivity {
 
         });
     }
+
 
 }
