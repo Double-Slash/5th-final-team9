@@ -31,6 +31,7 @@
         android:id="@+id/finish_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanscjkkr_regular"
         android:layout_alignParentEnd="true"
         android:textColor="@color/side_text"
         android:textSize="14dp"
@@ -54,9 +55,10 @@
             <EditText
                 android:id="@+id/english_word_add_edit"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="단어"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:hint="     단어"
                 android:layout_gravity="center"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -64,14 +66,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:theme="@style/EditTextThemeOverlay"
             >
             <EditText
                 android:id="@+id/korean_word_add_edit"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="의미"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:hint="     의미"
                 android:layout_gravity="center"/>
 
         </com.google.android.material.textfield.TextInputLayout>
