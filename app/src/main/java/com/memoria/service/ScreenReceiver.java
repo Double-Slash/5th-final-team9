@@ -17,7 +17,6 @@ public class ScreenReceiver extends BroadcastReceiver {
     private KeyguardManager.KeyguardLock keyLock = null;
 
 
-
     @Override
 
     public void onReceive(Context context, Intent intent) {
@@ -29,15 +28,12 @@ public class ScreenReceiver extends BroadcastReceiver {
                 km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
 
 
-
             if (keyLock == null)
 
                 keyLock = km.newKeyguardLock(Context.KEYGUARD_SERVICE);
 
 
-
             disableKeyguard();
-
 
 
             Intent i = new Intent(context, LockScreenActivity.class);
@@ -51,13 +47,11 @@ public class ScreenReceiver extends BroadcastReceiver {
     }
 
 
-
     public void reenableKeyguard() {
 
         keyLock.reenableKeyguard();
 
     }
-
 
 
     public void disableKeyguard() {
