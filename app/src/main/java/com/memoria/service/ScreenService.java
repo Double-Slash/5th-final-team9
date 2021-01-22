@@ -28,15 +28,13 @@ public class ScreenService extends Service {
     public void onCreate() {
 
         super.onCreate();
-
+        registerRestartAlarm(true);
 
         mReceiver = new ScreenReceiver();
-
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 
         registerReceiver(mReceiver, filter);
-        registerRestartAlarm(true);
 
     }
 
@@ -76,10 +74,8 @@ public class ScreenService extends Service {
     public void onDestroy() {
 
         super.onDestroy();
-        registerRestartAlarm(false);
-
-
         mReceiver.reenableKeyguard();
+        registerRestartAlarm(false);
         if (mReceiver != null) {
 
             unregisterReceiver(mReceiver);
@@ -101,7 +97,7 @@ public class ScreenService extends Service {
 
         if(isOn){
 
-            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 1000, 60000, sender);
+            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 60000, sender);
 
         }else{
 
