@@ -96,7 +96,7 @@ public class DataRestoreActivity extends AppCompatActivity {
                         Log.d("IOException e", "IOException e");
                         e.printStackTrace();
                     }finally{
-                        Intent intent = new Intent(DataRestoreActivity.this, MainActivity.class);
+                        Intent intent = new Intent(DataRestoreActivity.this, DataRestoreResultActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -172,7 +172,6 @@ public class DataRestoreActivity extends AppCompatActivity {
                 String wEnglishWord = wObject.getString("wEnglishWord");
                 String wKoreanWord = wObject.getString("wKoreanWord");
                 String wDate = wObject.getString("wDate");
-
 
                 if (!myWordDBHelper.insertWord(new MyWord(wGroupName, wEnglishWord, wKoreanWord, wDate)))
                     Log.d("myWordDB 데이터 추가 실패", wDate);

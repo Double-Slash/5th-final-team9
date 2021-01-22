@@ -52,9 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="-1dp"
+        android:scrollbars="none"
         android:divider="#FFFFFF"
         android:paddingTop="30dp"
-        android:scrollbars="none"
         android:layout_below="@id/title_text"/>
 
 </RelativeLayout>
