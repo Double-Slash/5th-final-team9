@@ -52,9 +52,6 @@ public class OptionFragment extends Fragment {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
-    static private int setM;
-    static private int setH;
-
     View view;
     int time = 1;
 
@@ -101,14 +98,17 @@ public class OptionFragment extends Fragment {
         });
 
         if (preferences.getString("lock","").equals("1")){
+            System.out.println("잠금화면설정");
+            System.out.println(preferences.getString("lock",""));
             switchOfLock.setChecked(true);
             Intent intent = new Intent(getActivity(), ScreenService.class);
             getActivity().startService(intent);
         } else{
+            System.out.println("잠금화면해제");
+            System.out.println(preferences.getString("lock",""));
             switchOfLock.setChecked(false);
             Intent intent = new Intent(getActivity(), ScreenService.class);
             getActivity().stopService(intent);
-
         }
 
         fragment2=new MyLockTestFragment();

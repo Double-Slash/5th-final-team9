@@ -14,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.memoria.R;
 import com.memoria.dbhelper.GoalDBHelper;
 import com.memoria.dbhelper.MyMemoryDBHelper;
+import com.memoria.dbhelper.MyTestDBHelper;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.modeldata.Goal;
 import com.memoria.modeldata.MyMemory;
+import com.memoria.modeldata.MyTest;
 import com.memoria.modeldata.MyWord;
 
 import org.json.JSONArray;
@@ -128,22 +130,26 @@ public class DataBackupActivity extends AppCompatActivity {
                             goalArray.put(goalObject);
                         }
 
-//                        //Test
-//                        JSONArray testArrayJson = new JSONArray();
-//                        MyTestDBHelper myTestDBHelper = new MyTestDBHelper(DataBackupActivity.this);
-//                        ArrayList<MyTest> testArrayList = myTestDBHelper.selectAllData();
-//                        for (MyTest t : testArrayList){
-//                            JSONObject goalObject = new JSONObject();
-//                            goalObject.put("gGoalWord",t.getGoalWord());
-//                            goalObject.put("gGoalMemory",g.getGoalMemory());
-//                            goalObject.put("gGoalTest",g.getGoalTest());
-//                            goalObject.put("gGoalQuiz",g.getGoalQuiz());
-//                            goalArray.put(goalObject);
-//                        }
+//                       //Test
+                        JSONArray testArray = new JSONArray();
+                        MyTestDBHelper myTestDBHelper = new MyTestDBHelper(DataBackupActivity.this);
+                        ArrayList<MyTest> testArrayList = myTestDBHelper.selectAllData();
+                        for (MyTest t : testArrayList){
+                            JSONObject testObject = new JSONObject();
+                            testObject.put("tStatus",t.getStatus());
+                            testObject.put("tTotal",t.getTotal());
+                            testObject.put("tCorrect",t.getCorrect());
+                            testObject.put("tPercent",t.getPercent());
+                            testObject.put("tGroup",t.getGroup());
+                            testObject.put("tDate",t.getDate());
+                            testArray.put(testObject);
+                        }
+                        System.out.println(testArray);
 
                         dataObject.put("word", wordArray);
                         dataObject.put("memory", memoryArray);
                         dataObject.put("goal", goalArray);
+                        dataObject.put("test", testArray);
 
                         jsonObject.accumulate("password", editpw.getText().toString());
                         jsonObject.accumulate("data", dataObject.toString());

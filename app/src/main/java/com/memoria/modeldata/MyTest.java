@@ -13,12 +13,13 @@ public class MyTest implements Serializable {
 
     public MyTest(){}
 
-    public MyTest(int correct, int total, float percent, String status, String date) {
+    public MyTest(int correct, int total, float percent, String groups, String status, String date) {
         this.correct = correct;
         this.total = total;
         this.percent = percent;
         this.status = status;
         this.date = date;
+        this.groups = groups;
     }
 
     public String getStatus(){ return status;}

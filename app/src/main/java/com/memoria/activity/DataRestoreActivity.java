@@ -14,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.memoria.R;
 import com.memoria.dbhelper.GoalDBHelper;
 import com.memoria.dbhelper.MyMemoryDBHelper;
+import com.memoria.dbhelper.MyTestDBHelper;
 import com.memoria.dbhelper.MyWordDBHelper;
 import com.memoria.modeldata.Goal;
 import com.memoria.modeldata.MyMemory;
+import com.memoria.modeldata.MyTest;
 import com.memoria.modeldata.MyWord;
 
 import org.json.JSONArray;
@@ -87,23 +89,6 @@ public class DataRestoreActivity extends AppCompatActivity {
                         addItem(result);
                         Log.d("ㅇ","ㅇ");
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            JSONArray arr = jsonObject.getJSONArray("msg");
-                            Log.d("jsonfiletttt", arr.get(0).toString());
-                            String arr2 = arr.getString(0);
-                            Log.d("st1", arr2);
-                            JSONObject temp = new JSONObject(arr2);
-                            Log.d("st1", temp.toString());
-                            String arr3 = temp.getString("data");
-                            JSONObject temp2 = new JSONObject(arr3);
-
-                            Log.d("st2", arr3.toString() );
-                        } catch(JSONException error){
-                            Log.d("오류", error.toString() );
-                        }
-
-
                     } catch (MalformedURLException e) {
                         Log.d("MalformedURLException e", "MalformedURLException e");
                         e.printStackTrace();
@@ -139,11 +124,37 @@ public class DataRestoreActivity extends AppCompatActivity {
             String word = menuObject.getString("word");
             String memory = menuObject.getString("memory");
             String goal = menuObject.getString("goal");
+            String test = menuObject.getString("test");
 
             addWord(word);
             addMemory(memory);
             addGoal(goal);
+            addTest(test);
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addTest(String test) {
+        JSONArray testArray = null;
+        try {
+            testArray = new JSONArray(test);
+            MyTestDBHelper myTestDBHelper = new MyTestDBHelper(this);
+
+            for(int t = 0; t < testArray.length(); t++){
+                JSONObject tObject = testArray.getJSONObject(t);
+                String tStatus = tObject.getString("tStatus");
+                int tTotal = tObject.getInt("tTotal");
+                int tCorrect = tObject.getInt("tCorrect");
+                float tPercent = (float) tObject.getDouble("tPercent");
+                String tGroup = tObject.getString("tGroup");
+                String tDate = tObject.getString("tDate");
+
+
+                if (!myTestDBHelper.insertScore(new MyTest(tCorrect, tTotal, tPercent, tGroup, tStatus, tDate)))
+                    Log.d("myTestDB 데이터 추가 실패", tDate);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -163,7 +174,7 @@ public class DataRestoreActivity extends AppCompatActivity {
                 String wDate = wObject.getString("wDate");
 
 
-                if (myWordDBHelper.insertWord(new MyWord(wGroupName, wEnglishWord, wKoreanWord, wDate)))
+                if (!myWordDBHelper.insertWord(new MyWord(wGroupName, wEnglishWord, wKoreanWord, wDate)))
                     Log.d("myWordDB 데이터 추가 실패", wDate);
             }
         } catch (JSONException e) {
@@ -182,8 +193,8 @@ public class DataRestoreActivity extends AppCompatActivity {
                 String mEnglishMemory = wObject.getString("mEnglishMemory");
                 String mDate = wObject.getString("mDate");
 
-                if (myMemoryDBHelper.insertMemory(new MyMemory(mEnglishMemory, mDate)))
-                    Log.d("myWordDB 데이터 추가 실패", mDate);
+                if (!myMemoryDBHelper.insertMemory(new MyMemory(mEnglishMemory, mDate)))
+                    Log.d("myMemoryDB 데이터 추가 실패", mDate);
             }
         } catch (JSONException e) {
             e.printStackTrace();

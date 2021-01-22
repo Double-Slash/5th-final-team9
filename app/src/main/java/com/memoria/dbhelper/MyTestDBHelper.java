@@ -10,8 +10,10 @@ import androidx.annotation.Nullable;
 
 import com.memoria.modeldata.Goal;
 import com.memoria.modeldata.MyTest;
+import com.memoria.modeldata.MyWord;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -98,6 +100,28 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
 
     public void DeleteData() {
         db.delete(TABLE_NAME,"TOTAL"+"="+0,null);
+    }
+
+    public ArrayList<MyTest> selectAllData(){
+        ArrayList<MyTest> resultList = new ArrayList<>();
+
+        String sql = "select *  from " + TABLE_NAME + " where " + COL_DATE + " is not null;";
+        Cursor results = db.rawQuery(sql, null);
+
+        if(results.moveToFirst()){
+            do{
+                MyTest myTest = new MyTest();
+                myTest.setStatus(results.getString(1));
+                myTest.setTotal(results.getInt(2));
+                myTest.setCorrect(results.getInt(3));
+                myTest.setPercent(results.getInt(4));
+                myTest.setGroup(results.getString(5));
+                myTest.setDate(results.getString(6));
+                resultList.add(myTest);
+            }while(results.moveToNext());
+        }
+        results.close();
+        return resultList;
     }
 
 
