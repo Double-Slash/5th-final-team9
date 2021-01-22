@@ -13,6 +13,7 @@
         android:layout_height="165dp"
         android:background="@drawable/grid_shadow"
         android:paddingTop="17dp"
+        android:gravity="center_horizontal"
         android:paddingStart="20dp"
         android:text="그룹1"
         android:textColor="@color/bold_text"

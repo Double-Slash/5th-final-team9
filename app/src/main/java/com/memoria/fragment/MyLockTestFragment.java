@@ -11,8 +11,10 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.memoria.R;
+import com.memoria.activity.MainActivity;
 import com.memoria.activity.TestActivity;
 import com.memoria.adapter.GridViewAdapter;
 import com.memoria.dbhelper.MyTestDBHelper;
@@ -26,12 +28,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MyTestFragment2 extends Fragment {
-
+public class MyLockTestFragment extends Fragment {
     View view;
     Button start2;
+    private MyTestDBHelper myTestDBHelper;
 
     private MyWordDBHelper myWordDBHelper;
+
+    OptionFragment fragment2;
 
 
 
@@ -42,12 +46,15 @@ public class MyTestFragment2 extends Fragment {
     ArrayList<MyWord> myWords = new ArrayList<>();
     GridViewAdapter adapter;
     GridView gridView;
+    String GroupName;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_test2, container, false);
+
+        fragment2=new OptionFragment();
 
         myWordDBHelper = new MyWordDBHelper(getContext());
         myWords = myWordDBHelper.selectWordGroupList();
@@ -59,10 +66,17 @@ public class MyTestFragment2 extends Fragment {
 
         selectedStrings = new ArrayList<>();
 
+        MyTest mytest = new MyTest();
+        myTestDBHelper = new MyTestDBHelper(getContext());
 
         gridView = view.findViewById(R.id.test_grid_list2);
         adapter = new GridViewAdapter(groups ,getActivity());
         gridView.setAdapter(adapter);
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        String formatDate = sdfNow.format(date);
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,9 +102,19 @@ public class MyTestFragment2 extends Fragment {
         start2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TestActivity.class);
-                intent.putStringArrayListExtra("SELECTED_GROUP", selectedStrings);
-                startActivity(intent);
+                for (String element : selectedStrings){
+                    GroupName=GroupName+element+",";
+                }
+                GroupName = GroupName.substring(4, GroupName.length()-1);
+                mytest.setGroup(GroupName);
+                mytest.setTotal(0);
+                mytest.setStatus("lock");
+                mytest.setCorrect(0);
+                mytest.setPercent(0);
+                mytest.setDate(formatDate);
+                myTestDBHelper.insertScore(mytest);
+                ((MainActivity)getActivity()).replaceFragment(fragment2);
+
             }
         });
 

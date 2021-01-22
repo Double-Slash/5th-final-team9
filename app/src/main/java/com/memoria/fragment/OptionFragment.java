@@ -27,6 +27,7 @@ import com.memoria.activity.DataRestoreActivity;
 import com.memoria.activity.MainActivity;
 import com.memoria.activity.SetTimeActivity;
 import com.memoria.service.BroadcastD;
+import com.memoria.service.ScreenService;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,6 +43,10 @@ public class OptionFragment extends Fragment {
     //데이터 설정
     private ImageButton backupButton;
     private ImageButton restoreButton;
+
+    //mylockfragment
+    MyLockTestFragment fragment2;
+
 
     static private int setM;
     static private int setH;
@@ -68,6 +73,34 @@ public class OptionFragment extends Fragment {
             time = Integer.parseInt(bundle.getString("send"));
             Log.d("time", Integer.toString(time));
         }
+
+        // 잠금화면에 띄울 단어 설정과 스위치 부분 제가 임시로 할게요...
+
+        switchOfLock = (Switch)view.findViewById(R.id.switchOfLock);
+        switchOfLock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    Intent intent = new Intent(getActivity(), ScreenService.class);
+                    getActivity().startService(intent);
+                }
+                else{
+                    Intent intent = new Intent(getActivity(), ScreenService.class);
+                    getActivity().stopService(intent);
+                }
+            }
+        });
+        fragment2=new MyLockTestFragment();
+
+        lockButton=view.findViewById(R.id.lockButton);
+        lockButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(fragment2);
+
+            }
+        });
 
         //SharedPreferences sharedPreferences = getShared
 

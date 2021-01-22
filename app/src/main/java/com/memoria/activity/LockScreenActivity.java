@@ -1,72 +1,146 @@
 package com.memoria.activity;
 
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.pm.ActivityInfo;
+
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Window;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.memoria.R;
+import com.memoria.dbhelper.MyTestDBHelper;
+import com.memoria.dbhelper.MyWordDBHelper;
+import com.memoria.modeldata.MyTest;
+import com.memoria.modeldata.MyWord;
+
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 public class LockScreenActivity extends AppCompatActivity {
 
-    private Window window;
-    TextView textView;
-    TextView textView2;
+    private MyWordDBHelper myWordDBHelper;
+    private MyTestDBHelper myTestDBHelper;
+    ArrayList<MyWord> myWords;
+    ArrayList<MyWord> wordList;
+    ArrayList<MyWord> wordList1;
+    TextView english;
+    EditText answer;
+    TextView title;
+    Button next;
+    MyWord currentWord;
+    int current=1;
+    int currentCorrect=0;
+    String Question=null;
+    String Answer=null;
+    String GroupName =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lock_screen);
+        setContentView(R.layout.activity_test);
 
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD); //안드로이드 기본 잠금화면 보다 위에 이 activity를 띄워라
+        myTestDBHelper = new MyTestDBHelper(this);
+        GroupName=myTestDBHelper.selectRecentGroup();
+        myTestDBHelper.DeleteData();
+        String[] selectGroup = GroupName.split(",");
 
+        myWordDBHelper = new MyWordDBHelper(this);
+        wordList = new ArrayList<MyWord>();
+        for (String element : selectGroup) {
+            myWords = myWordDBHelper.selectWordListByGroup(element);
+            wordList.addAll(myWords);
+        }
+        wordList1 = new ArrayList<MyWord>();
+        Collections.shuffle(wordList);
+        for(int i =0; i<=3;i++ ){
+            wordList1.add(wordList.get(i));
+        }
+        MyTest mytest = new MyTest();
+        myTestDBHelper = new MyTestDBHelper(this);
+        mytest.setGroup(GroupName);
+        mytest.setTotal(wordList1.size());
+        mytest.setStatus("lock");
 
-        long first = getIntent().getLongExtra("FIRST", 0);
-        long second = getIntent().getLongExtra("SECOND", 0);
+        //title
+        title=findViewById(R.id.title_text);
+        title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
+        // 랜덤으로 섞는다.
+        english = findViewById(R.id.test_english);
+        next = findViewById(R.id.test_next);
+        currentWord = wordList1.get(0);
+        english.setText(currentWord.getEnglishWord());
+        answer = findViewById(R.id.test_answer);
 
-        long timeUsed = (second - first)/1000/60;           //지난번 핸드폰 사용시간 계산
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        String formatDate = sdfNow.format(date);
 
-        textView = (TextView)findViewById(R.id.time);
-        textView.setText("지난 핸드폰 사용 시간(분): "+timeUsed);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Answer=answer.getText().toString().replaceAll(" ", "");
+                Question=currentWord.getKoreanWord().replaceAll(" ", "");
+                if(Answer.equals(Question)){
+                    title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
+                    currentCorrect+=1;
+                    if (wordList1.size() == 1) {
+                        mytest.setCorrect(currentCorrect);
+                        mytest.setPercent(currentCorrect*100/mytest.getTotal());
+                        mytest.setDate(formatDate);
+                        myTestDBHelper.insertScore(mytest);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        current+=1;
+                        title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
+                        wordList1.remove(0);
+                        currentWord = wordList1.get(0);
+                        english.setText(currentWord.getEnglishWord());
+                        answer.getText().clear();
+                        if(wordList1.size()==1){
+                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
+                            next.setText("DONE");
+                        }
+                    }
+                } else {
+                    if (wordList1.size() == 1) {
+                        mytest.setCorrect(currentCorrect);
+                        mytest.setPercent(currentCorrect*100/mytest.getTotal());
+                        mytest.setDate(formatDate);
+                        myTestDBHelper.insertScore(mytest);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        current+=1;
+                        title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
+                        wordList1.remove(0);
+                        currentWord = wordList1.get(0);
+                        english.setText(currentWord.getEnglishWord());
+                        answer.getText().clear();
+                        if(wordList1.size()==1){
+                            next.setBackgroundColor(Color.parseColor("#7AEAC3"));
+                            next.setText("DONE");
+                        }
+                    }
+                }
+            }
 
-
+        });
     }
 
-    @Override public void onBackPressed() {
-        //뒤로가기 막기
-        //super.onBackPressed();
-    }
-
-    //메뉴키 막는 방법
-
-    protected void onPause() {
-        super.onPause();
-        ActivityManager activityManager = (ActivityManager) getApplicationContext()
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.moveTaskToFront(getTaskId(), 0);
-        Toast.makeText(this, "메뉴키 사용불가.", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onUserLeaveHint() {
-
-        Toast.makeText(this, "홈 버튼", Toast.LENGTH_LONG).show();
-        finish();
-
-        //홈버튼 실행시 강제로 엑티비티 재실행
-//        Intent i = new Intent(this, LockScreenActivity.class);
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(i);
-
-        super.onUserLeaveHint();
-    }
 
 }

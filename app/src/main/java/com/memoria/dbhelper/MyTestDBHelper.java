@@ -2,12 +2,16 @@ package com.memoria.dbhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import com.memoria.modeldata.MyTest;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MyTestDBHelper extends SQLiteOpenHelper {
@@ -20,6 +24,7 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
     public static final String COL_STATUS = "STATUS";
     public static final String COL_CORRECT = "CORRECT";
     public static final String COL_PERCENT = "PERCENT";
+    public static final String COL_GROUP = "GROUPNAME";
 
     SQLiteDatabase db;
 
@@ -33,9 +38,10 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE "+ TABLE_NAME + "("
                 + "_id integer primary key autoincrement, "
                 + COL_TOTAL + " integer,"
-                + COL_STATUS + "string,"
+                + COL_STATUS + " text,"
                 + COL_CORRECT + " integer,"
                 + COL_PERCENT + " float,"
+                + COL_GROUP + " text,"
                 + COL_DATE + " date);"
         );
     }
@@ -46,11 +52,11 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_TOTAL, myTest.getTotal());
         contentValues.put(COL_CORRECT, myTest.getCorrect());
         contentValues.put(COL_PERCENT, myTest.getPercent());
+        contentValues.put(COL_GROUP, myTest.getGroup());
         contentValues.put(COL_STATUS, myTest.getStatus());
         contentValues.put(COL_DATE, myTest.getDate());
 
         long result = db.insert(TABLE_NAME, null, contentValues);
-
         if( result == -1) return false;
         else return true;
     }
@@ -60,5 +66,28 @@ public class MyTestDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS MyWordTable");
         onCreate(db);
     }
+
+    // 가장 최근에 LOCK 테스트 그룹 등록한 걸 뽑는다.
+    public String selectRecentGroup() {
+        String sql = " SELECT " + "GROUPNAME" + " FROM " + TABLE_NAME + " where " + COL_DATE + " = '"+ getNowDate()  +"' ORDER BY " + "_id" + " DESC LIMIT 1;";
+        Cursor result = db.rawQuery(sql, null);
+
+        if (result.moveToFirst()) return result.getString(0);
+
+        result.close();
+        return null;
+    }
+
+    public String getNowDate(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        return sdfNow.format(date);
+    }
+
+    public void DeleteData() {
+        db.delete(TABLE_NAME,"TOTAL"+"="+0,null);
+    }
+
 
 }

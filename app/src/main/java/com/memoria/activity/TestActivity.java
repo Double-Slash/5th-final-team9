@@ -31,6 +31,8 @@ public class TestActivity extends AppCompatActivity {
     private MyTestDBHelper myTestDBHelper;
     ArrayList<MyWord> myWords;
     ArrayList<MyWord> wordList;
+    ArrayList<MyWord> wordList1;
+
     TextView english;
     EditText answer;
     TextView title;
@@ -40,6 +42,7 @@ public class TestActivity extends AppCompatActivity {
     int currentCorrect=0;
     String Question=null;
     String Answer=null;
+    String GroupName =null;
 
 
 
@@ -50,15 +53,19 @@ public class TestActivity extends AppCompatActivity {
         selectGroup = getIntent().getStringArrayListExtra("SELECTED_GROUP");
         myWordDBHelper = new MyWordDBHelper(this);
         wordList = new ArrayList<MyWord>();
+
+        myTestDBHelper = new MyTestDBHelper(this);
+
         for (String element : selectGroup) {
             myWords = myWordDBHelper.selectWordListByGroup(element);
+            GroupName=GroupName+element+",";
             wordList.addAll(myWords);
         }
+        GroupName = GroupName.substring(4, GroupName.length()-1);
         MyTest mytest = new MyTest();
-        myTestDBHelper = new MyTestDBHelper(this);
+        mytest.setGroup(GroupName);
         mytest.setTotal(wordList.size());
         mytest.setStatus("unlock");
-
         //title
         title=findViewById(R.id.title_text);
         title.setText("Test(" + current + "/"+mytest.getTotal()+ ")");
@@ -85,7 +92,7 @@ public class TestActivity extends AppCompatActivity {
                     currentCorrect+=1;
                     if (wordList.size() == 1) {
                         mytest.setCorrect(currentCorrect);
-                        mytest.setPercent(currentCorrect/mytest.getTotal());
+                        mytest.setPercent(currentCorrect*100/mytest.getTotal());
                         mytest.setDate(formatDate);
                         myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -106,7 +113,7 @@ public class TestActivity extends AppCompatActivity {
                 } else {
                     if (wordList.size() == 1) {
                         mytest.setCorrect(currentCorrect);
-                        mytest.setPercent(currentCorrect/mytest.getTotal());
+                        mytest.setPercent(currentCorrect*100/mytest.getTotal());
                         mytest.setDate(formatDate);
                         myTestDBHelper.insertScore(mytest);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
