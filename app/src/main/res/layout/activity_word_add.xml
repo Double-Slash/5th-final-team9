@@ -1,19 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingTop="40dp"
     android:background="@color/white"
     android:paddingHorizontal="20dp">
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/back_btn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/ic_left"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        />-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/back_btn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/ic_left"-->
+    <!--        android:layout_margin="5dp"-->
+    <!--        android:background="@android:color/transparent"-->
+    <!--        />-->
 
     <TextView
         android:id="@+id/title_text"
@@ -36,21 +37,58 @@
         android:layout_margin="5dp"
         android:text="완료" />
 
-    <EditText
-        android:id="@+id/english_word_add_edit"
-        android:layout_below="@id/title_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:hint="      단어"/>
 
-    <EditText
-        android:id="@+id/korean_word_add_edit"
-        android:layout_below="@id/english_word_add_edit"
+    <LinearLayout
+        android:id="@+id/word_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:hint="      의미"/>
+        android:layout_below="@id/title_text"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_textInputLayout_ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/EditTextThemeOverlay"
+            >
+            <EditText
+                android:id="@+id/english_word_add_edit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:hint="단어"
+                android:layout_gravity="center"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/EditTextThemeOverlay"
+            >
+            <EditText
+                android:id="@+id/korean_word_add_edit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:hint="의미"
+                android:layout_gravity="center"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/korean_word_plus_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_left"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:layout_below="@id/word_box"
+            android:text="의미 추가하기"
+            android:textSize="13dp"
+            android:background="@android:color/transparent"
+            />
 
 
 </RelativeLayout>

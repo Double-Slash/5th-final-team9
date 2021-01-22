@@ -54,27 +54,7 @@ public class DataBackupActivity extends AppCompatActivity {
         editpw = findViewById(R.id.editpw);
         checkpw = findViewById(R.id.checkpw);
 
-//        checkpw.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if (!(editpw.getText().toString()==checkpw.getText().toString())){
-////                    Toast.makeText(getApplicationContext(),"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-//                    checkpw.setError("비밀번호가 일치하지 않습니다");
-//                }else
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                if ((editpw.getText().toString()==checkpw.getText().toString())){
-//                    checkpw.setError(null);
-//                }
-//            }
-//        });
+
         backupButton = findViewById(R.id.backupButton);
 
         backupButton.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +70,7 @@ public class DataBackupActivity extends AppCompatActivity {
                         return;
                     }
                     try {
-                        URL url = new URL("http://221.167.222.53:3001/data");
+                        URL url = new URL("http://222.107.252.206:3001/data");
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
                         httpURLConnection.setDefaultUseCaches(false);

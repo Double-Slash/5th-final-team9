@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.DataRestoreResultActivity"></activity>
+        <activity android:name=".activity.TestResultActivity"></activity>
+        <activity android:name=".activity.DataRestoreResultActivity" />
         <activity android:name=".activity.DataBackupResultActivity" />
         <activity
             android:name=".activity.SetTimeActivity"

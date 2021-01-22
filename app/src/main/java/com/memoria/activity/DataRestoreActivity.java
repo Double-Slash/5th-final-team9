@@ -55,7 +55,7 @@ public class DataRestoreActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (findpw.getText().toString() != null){
                     try {
-                        URL url = new URL("http://221.167.222.53:3001/data/" + findpw.getText().toString());
+                        URL url = new URL("http://222.107.252.206:3001/data/" + findpw.getText().toString());
                         System.out.println(findpw.getText().toString());
                         System.out.println(url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
